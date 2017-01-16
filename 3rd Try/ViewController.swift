@@ -58,15 +58,15 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
 }
 
-var grFile: String?
-var hpFile: String?
-var ytFile: String?
-var grN: String?
-var grPPG: String?
-var grSRM: String?
-var x: String?
-var text: String?
-var path: URL?
+//var grFile: String?
+//var hpFile: String?
+//var ytFile: String?
+//var grN: String?
+//var grPPG: String?
+//var grSRM: String?
+//var x: String?
+//var text: String?
+//var path: URL?
 
 class AddNewIngredient: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
     
@@ -89,19 +89,20 @@ class AddNewIngredient: UIViewController, UIPickerViewDelegate, UIPickerViewData
     
     
     @IBAction func addGrain(){
-        grFile = "Grain.txt" //this is the file. we will write to and read from it
-        grN = newGrainName.text!
-        grPPG = newGrainPPG.text!
-        grSRM = newGrainSRM.text!
-        x = ";"
-        text = "/(grN) /(x) /(grPPG) /(x) /(grSRM) /(x)"
+        let grFile = "Grain.txt" //this is the file. we will write to and read from it
+        let grN = newGrainName.text!
+        let grPPG = newGrainPPG.text!
+        let grSRM = newGrainSRM.text!
+        let x = ";"
+        let text = String(format: "%@ %@ %02.2d %@ %02.2d %@ /n", grN, x, grPPG, x, grSRM, x)
+        print(text)
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             
-            let path = dir.appendingPathComponent(grFile!)
+            let path = dir.appendingPathComponent(grFile)
             
             //writing
             do {
-                try text?.write(to: path, atomically: false, encoding: String.Encoding.utf8)
+                try text.write(to: path, atomically: false, encoding: String.Encoding.utf8)
 
             }
             catch {/* error handling here */}
