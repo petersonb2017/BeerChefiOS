@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="12222439-Pale-malt-crystal-malt-chocolate-malt-Stock-Photo-barley-hops-malt" translatesAutoresizingMaskIntoConstraints="NO" id="fJe-nl-HMI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="barley-malt" translatesAutoresizingMaskIntoConstraints="NO" id="fJe-nl-HMI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -35,6 +35,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="12222439-Pale-malt-crystal-malt-chocolate-malt-Stock-Photo-barley-hops-malt" width="866" height="1300"/>
+        <image name="barley-malt" width="360" height="480"/>
     </resources>
 </document>

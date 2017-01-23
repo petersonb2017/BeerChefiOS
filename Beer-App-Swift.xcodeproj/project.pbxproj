@@ -7,34 +7,57 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		134973731E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 134973711E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodeld */; };
+		134973C61E2E04A900B14E3C /* Yeasts+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973BE1E2E04A900B14E3C /* Yeasts+CoreDataClass.swift */; };
+		134973C71E2E04A900B14E3C /* Yeasts+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973BF1E2E04A900B14E3C /* Yeasts+CoreDataProperties.swift */; };
+		134973C81E2E04A900B14E3C /* Recipes+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C01E2E04A900B14E3C /* Recipes+CoreDataClass.swift */; };
+		134973C91E2E04A900B14E3C /* Recipes+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C11E2E04A900B14E3C /* Recipes+CoreDataProperties.swift */; };
+		134973CA1E2E04A900B14E3C /* Grains+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C21E2E04A900B14E3C /* Grains+CoreDataClass.swift */; };
+		134973CB1E2E04A900B14E3C /* Grains+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C31E2E04A900B14E3C /* Grains+CoreDataProperties.swift */; };
+		134973CC1E2E04A900B14E3C /* Hops+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C41E2E04A900B14E3C /* Hops+CoreDataClass.swift */; };
+		134973CD1E2E04A900B14E3C /* Hops+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C51E2E04A900B14E3C /* Hops+CoreDataProperties.swift */; };
+		13A7AE551E2DA48E00D27940 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A7AE541E2DA48E00D27940 /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		13C5405B1E19FC1500374021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5405A1E19FC1500374021 /* AppDelegate.swift */; };
-		13C5405D1E19FC1500374021 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5405C1E19FC1500374021 /* ViewController.swift */; };
+		13C5405D1E19FC1500374021 /* RecipeBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5405C1E19FC1500374021 /* RecipeBuilderViewController.swift */; };
 		13C540601E19FC1500374021 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C5405E1E19FC1500374021 /* Main.storyboard */; };
 		13C540621E19FC1500374021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C540611E19FC1500374021 /* Assets.xcassets */; };
 		13C540651E19FC1500374021 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13C540631E19FC1500374021 /* LaunchScreen.storyboard */; };
-		13C5406D1E1B68B700374021 /* Grain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5406C1E1B68B700374021 /* Grain.swift */; };
-		13C5406F1E1B68D600374021 /* Hop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5406E1E1B68D600374021 /* Hop.swift */; };
-		13C540711E1B68E400374021 /* Yeast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C540701E1B68E400374021 /* Yeast.swift */; };
-		13C540751E1B6A0400374021 /* GrainList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13C540741E1B6A0400374021 /* GrainList.txt */; };
-		13C540771E1B6A8800374021 /* HopList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13C540761E1B6A8800374021 /* HopList.txt */; };
-		13C540791E1B6A9F00374021 /* YeastList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 13C540781E1B6A9F00374021 /* YeastList.txt */; };
+		13E0B3631E35430000E95AE3 /* AddNewIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0B3621E35430000E95AE3 /* AddNewIngredientViewController.swift */; };
+		13E0B3651E3543AC00E95AE3 /* ArchivedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0B3641E3543AC00E95AE3 /* ArchivedRecipesViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		13A7AE561E2DDFAD00D27940 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = text.plist.strings;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyStrings\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
+		134973721E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Beer-App-Swift.xcdatamodel"; sourceTree = "<group>"; };
+		134973BE1E2E04A900B14E3C /* Yeasts+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Yeasts+CoreDataClass.swift"; sourceTree = "<group>"; };
+		134973BF1E2E04A900B14E3C /* Yeasts+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Yeasts+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		134973C01E2E04A900B14E3C /* Recipes+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recipes+CoreDataClass.swift"; sourceTree = "<group>"; };
+		134973C11E2E04A900B14E3C /* Recipes+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Recipes+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		134973C21E2E04A900B14E3C /* Grains+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grains+CoreDataClass.swift"; sourceTree = "<group>"; };
+		134973C31E2E04A900B14E3C /* Grains+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grains+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		134973C41E2E04A900B14E3C /* Hops+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hops+CoreDataClass.swift"; sourceTree = "<group>"; };
+		134973C51E2E04A900B14E3C /* Hops+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hops+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		13A7AE541E2DA48E00D27940 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		13C540571E19FC1500374021 /* Beer-App-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beer-App-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C5405A1E19FC1500374021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		13C5405C1E19FC1500374021 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		13C5405C1E19FC1500374021 /* RecipeBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeBuilderViewController.swift; sourceTree = "<group>"; };
 		13C5405F1E19FC1500374021 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13C540611E19FC1500374021 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13C540641E19FC1500374021 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		13C540661E19FC1500374021 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13C5406C1E1B68B700374021 /* Grain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grain.swift; sourceTree = "<group>"; };
-		13C5406E1E1B68D600374021 /* Hop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hop.swift; sourceTree = "<group>"; };
-		13C540701E1B68E400374021 /* Yeast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Yeast.swift; sourceTree = "<group>"; };
-		13C540741E1B6A0400374021 /* GrainList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = GrainList.txt; path = ../GrainList.txt; sourceTree = "<group>"; };
-		13C540761E1B6A8800374021 /* HopList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HopList.txt; sourceTree = "<group>"; };
-		13C540781E1B6A9F00374021 /* YeastList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = YeastList.txt; sourceTree = "<group>"; };
-		13C5407A1E26E12300374021 /* TesterPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TesterPlayground.playground; sourceTree = "<group>"; };
+		13E0B3621E35430000E95AE3 /* AddNewIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewIngredientViewController.swift; sourceTree = "<group>"; };
+		13E0B3641E3543AC00E95AE3 /* ArchivedRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchivedRecipesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,17 +65,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A7AE551E2DA48E00D27940 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13A7AE531E2DA48E00D27940 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13A7AE541E2DA48E00D27940 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		13C5404E1E19FC1400374021 = {
 			isa = PBXGroup;
 			children = (
+				134973BE1E2E04A900B14E3C /* Yeasts+CoreDataClass.swift */,
+				134973BF1E2E04A900B14E3C /* Yeasts+CoreDataProperties.swift */,
+				134973C01E2E04A900B14E3C /* Recipes+CoreDataClass.swift */,
+				134973C11E2E04A900B14E3C /* Recipes+CoreDataProperties.swift */,
+				134973C21E2E04A900B14E3C /* Grains+CoreDataClass.swift */,
+				134973C31E2E04A900B14E3C /* Grains+CoreDataProperties.swift */,
+				134973C41E2E04A900B14E3C /* Hops+CoreDataClass.swift */,
+				134973C51E2E04A900B14E3C /* Hops+CoreDataProperties.swift */,
 				13C540591E19FC1500374021 /* Beer-App-Swift */,
 				13C540581E19FC1500374021 /* Products */,
+				13A7AE531E2DA48E00D27940 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,18 +109,14 @@
 			isa = PBXGroup;
 			children = (
 				13C5405A1E19FC1500374021 /* AppDelegate.swift */,
-				13C5405C1E19FC1500374021 /* ViewController.swift */,
+				13E0B3641E3543AC00E95AE3 /* ArchivedRecipesViewController.swift */,
+				13C5405C1E19FC1500374021 /* RecipeBuilderViewController.swift */,
+				13E0B3621E35430000E95AE3 /* AddNewIngredientViewController.swift */,
 				13C5405E1E19FC1500374021 /* Main.storyboard */,
-				13C5406C1E1B68B700374021 /* Grain.swift */,
-				13C5407A1E26E12300374021 /* TesterPlayground.playground */,
-				13C5406E1E1B68D600374021 /* Hop.swift */,
-				13C540701E1B68E400374021 /* Yeast.swift */,
-				13C540741E1B6A0400374021 /* GrainList.txt */,
-				13C540761E1B6A8800374021 /* HopList.txt */,
-				13C540781E1B6A9F00374021 /* YeastList.txt */,
 				13C540611E19FC1500374021 /* Assets.xcassets */,
 				13C540631E19FC1500374021 /* LaunchScreen.storyboard */,
 				13C540661E19FC1500374021 /* Info.plist */,
+				134973711E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodeld */,
 			);
 			name = "Beer-App-Swift";
 			path = "3rd Try";
@@ -97,6 +134,7 @@
 				13C540551E19FC1400374021 /* Resources */,
 			);
 			buildRules = (
+				13A7AE561E2DDFAD00D27940 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -144,12 +182,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13C540751E1B6A0400374021 /* GrainList.txt in Resources */,
-				13C540771E1B6A8800374021 /* HopList.txt in Resources */,
 				13C540651E19FC1500374021 /* LaunchScreen.storyboard in Resources */,
 				13C540621E19FC1500374021 /* Assets.xcassets in Resources */,
 				13C540601E19FC1500374021 /* Main.storyboard in Resources */,
-				13C540791E1B6A9F00374021 /* YeastList.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,11 +195,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13C5405D1E19FC1500374021 /* ViewController.swift in Sources */,
-				13C5406D1E1B68B700374021 /* Grain.swift in Sources */,
+				13E0B3651E3543AC00E95AE3 /* ArchivedRecipesViewController.swift in Sources */,
+				13C5405D1E19FC1500374021 /* RecipeBuilderViewController.swift in Sources */,
+				134973C71E2E04A900B14E3C /* Yeasts+CoreDataProperties.swift in Sources */,
+				13E0B3631E35430000E95AE3 /* AddNewIngredientViewController.swift in Sources */,
 				13C5405B1E19FC1500374021 /* AppDelegate.swift in Sources */,
-				13C5406F1E1B68D600374021 /* Hop.swift in Sources */,
-				13C540711E1B68E400374021 /* Yeast.swift in Sources */,
+				134973CB1E2E04A900B14E3C /* Grains+CoreDataProperties.swift in Sources */,
+				134973CD1E2E04A900B14E3C /* Hops+CoreDataProperties.swift in Sources */,
+				134973C81E2E04A900B14E3C /* Recipes+CoreDataClass.swift in Sources */,
+				134973C61E2E04A900B14E3C /* Yeasts+CoreDataClass.swift in Sources */,
+				134973CA1E2E04A900B14E3C /* Grains+CoreDataClass.swift in Sources */,
+				134973731E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodeld in Sources */,
+				134973C91E2E04A900B14E3C /* Recipes+CoreDataProperties.swift in Sources */,
+				134973CC1E2E04A900B14E3C /* Hops+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +372,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		134973711E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				134973721E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodel */,
+			);
+			currentVersion = 134973721E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodel */;
+			name = "Beer-App-Swift.xcdatamodeld";
+			path = "../Beer-App-Swift.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 13C5404F1E19FC1400374021 /* Project object */;
 }

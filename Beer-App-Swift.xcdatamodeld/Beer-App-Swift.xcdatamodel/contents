@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Grains" representedClassName="Grains" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ppg" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="srm" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="partOfRecipe" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipes" inverseName="containsGrain" inverseEntity="Recipes" syncable="YES"/>
+    </entity>
+    <entity name="Hops" representedClassName="Hops" syncable="YES">
+        <attribute name="aa" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pellet" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="partOfRecipe" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipes" inverseName="containsHop" inverseEntity="Recipes" syncable="YES"/>
+    </entity>
+    <entity name="Recipes" representedClassName="Recipes" syncable="YES">
+        <attribute name="grainsUsed" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="hopsUsed" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="yeastUsed" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="containsGrain" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grains" inverseName="partOfRecipe" inverseEntity="Grains" syncable="YES"/>
+        <relationship name="containsHop" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Hops" inverseName="partOfRecipe" inverseEntity="Hops" syncable="YES"/>
+        <relationship name="containsYeast" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Yeasts" inverseName="partOfRecipe" inverseEntity="Yeasts" syncable="YES"/>
+    </entity>
+    <entity name="Yeasts" representedClassName="Yeasts" syncable="YES">
+        <attribute name="attenHigh" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="attenLow" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fermTempHigh" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fermTempLow" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="partOfRecipe" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Recipes" inverseName="containsYeast" inverseEntity="Recipes" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Grains" positionX="-63" positionY="-135" width="128" height="103"/>
+        <element name="Hops" positionX="-74" positionY="21" width="128" height="103"/>
+        <element name="Yeasts" positionX="-54" positionY="153" width="128" height="133"/>
+        <element name="Recipes" positionX="259" positionY="-9" width="128" height="148"/>
+    </elements>
+</model>
