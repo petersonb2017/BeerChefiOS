@@ -15,6 +15,7 @@
     <entity name="Recipes" representedClassName="Recipes" syncable="YES">
         <attribute name="grainsUsed" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="hopsUsed" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="info" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="yeastUsed" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="containsGrain" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grains" inverseName="partOfRecipe" inverseEntity="Grains" syncable="YES"/>
@@ -32,7 +33,7 @@
     <elements>
         <element name="Grains" positionX="-63" positionY="-135" width="128" height="103"/>
         <element name="Hops" positionX="-74" positionY="21" width="128" height="103"/>
+        <element name="Recipes" positionX="259" positionY="-9" width="128" height="165"/>
         <element name="Yeasts" positionX="-54" positionY="153" width="128" height="133"/>
-        <element name="Recipes" positionX="259" positionY="-9" width="128" height="148"/>
     </elements>
 </model>
