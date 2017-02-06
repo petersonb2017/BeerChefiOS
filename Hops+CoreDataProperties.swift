@@ -2,7 +2,7 @@
 //  Hops+CoreDataProperties.swift
 //  Beer-App-Swift
 //
-//  Created by Bailey Peterson on 1/16/17.
+//  Created by Bailey Peterson on 2/5/17.
 //  Copyright © 2017 Bailey Peterson. All rights reserved.
 //
 
@@ -16,10 +16,8 @@ extension Hops {
         return NSFetchRequest<Hops>(entityName: "Hops");
     }
 
+    @NSManaged public var aa: Double
     @NSManaged public var name: String?
     @NSManaged public var pellet: Bool
-    @NSManaged public var aa: Double
-    @NSManaged public var partOfRecipe: Recipes?
-
 
 }

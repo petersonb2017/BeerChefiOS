@@ -194,14 +194,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dE9-Ej-Jnl">
-                                        <rect key="frame" x="47" y="83" width="137" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <segments>
-                                            <segment title="All-Grain"/>
-                                            <segment title="Extract"/>
-                                        </segments>
-                                    </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5ze-5B-Z3E">
                                         <rect key="frame" x="6" y="-38" width="107" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -218,14 +210,32 @@
                                             <color key="titleColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" red="0.94452506300000005" green="0.901421845" blue="0.73060649629999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="addRecipeButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="lH3-6O-anZ"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Recipe Description/Style" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RIX-sG-FYx">
-                                        <rect key="frame" x="70" y="119" width="180" height="30"/>
+                                        <rect key="frame" x="187" y="81" width="180" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Batch Size" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PbU-kK-fAT">
+                                        <rect key="frame" x="141" y="117" width="226" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dE9-Ej-Jnl">
+                                        <rect key="frame" x="31" y="81" width="137" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="All-Grain"/>
+                                            <segment title="Extract"/>
+                                        </segments>
+                                    </segmentedControl>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="t9I-nh-cnY" firstAttribute="baseline" secondItem="kxW-W2-lYf" secondAttribute="baseline" id="0uc-rZ-ybb"/>
@@ -317,15 +327,16 @@
                         <outlet property="hopPickerView" destination="qAy-IX-nrx" id="nQd-i0-5lG"/>
                         <outlet property="hopTimeTextField" destination="kxW-W2-lYf" id="hMZ-Nk-feo"/>
                         <outlet property="hopWeightTextField" destination="t9I-nh-cnY" id="8nP-6J-1ql"/>
-                        <outlet property="recipeInfoTextField" destination="RIX-sG-FYx" id="3fI-tM-jC9"/>
-                        <outlet property="recipeNameTextField" destination="x55-ID-OS3" id="NKf-bY-shs"/>
+                        <outlet property="recipeBatchSize" destination="PbU-kK-fAT" id="1vl-Fv-AKk"/>
+                        <outlet property="recipeInfoTextField" destination="RIX-sG-FYx" id="Pqx-MO-C1G"/>
+                        <outlet property="recipeNameTextField" destination="x55-ID-OS3" id="VM2-BC-sLB"/>
                         <outlet property="yeastAdditionsTableView" destination="PxA-OG-dUe" id="FIB-cF-91w"/>
                         <outlet property="yeastPickerView" destination="dFy-cn-3F2" id="mav-3F-RYc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2758" y="757"/>
+            <point key="canvasLocation" x="2757.5999999999999" y="756.52173913043487"/>
         </scene>
         <!--New Ingredient-->
         <scene sceneID="uvs-N3-bjZ">
@@ -673,6 +684,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Archived Recipes" id="k4U-Bw-Ep2" userLabel="Archived Recipes"/>
+                    <connections>
+                        <outlet property="recipeTableView" destination="Jaw-Pk-Mxg" id="W8M-SQ-67p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Wm-M2-8jK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
