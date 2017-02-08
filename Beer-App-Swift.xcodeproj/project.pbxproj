@@ -20,6 +20,7 @@
 		134973CB1E2E04A900B14E3C /* Grains+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C31E2E04A900B14E3C /* Grains+CoreDataProperties.swift */; };
 		134973CC1E2E04A900B14E3C /* Hops+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C41E2E04A900B14E3C /* Hops+CoreDataClass.swift */; };
 		134973CD1E2E04A900B14E3C /* Hops+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C51E2E04A900B14E3C /* Hops+CoreDataProperties.swift */; };
+		139879B71E49905E00004ACE /* ColorDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139879B61E49905E00004ACE /* ColorDecider.swift */; };
 		13A7AE551E2DA48E00D27940 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A7AE541E2DA48E00D27940 /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		13C5405B1E19FC1500374021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5405A1E19FC1500374021 /* AppDelegate.swift */; };
 		13C5405D1E19FC1500374021 /* RecipeBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13C5405C1E19FC1500374021 /* RecipeBuilderViewController.swift */; };
@@ -56,6 +57,7 @@
 		134973C31E2E04A900B14E3C /* Grains+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grains+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		134973C41E2E04A900B14E3C /* Hops+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hops+CoreDataClass.swift"; sourceTree = "<group>"; };
 		134973C51E2E04A900B14E3C /* Hops+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hops+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		139879B61E49905E00004ACE /* ColorDecider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDecider.swift; sourceTree = "<group>"; };
 		13A7AE541E2DA48E00D27940 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		13C540571E19FC1500374021 /* Beer-App-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beer-App-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13C5405A1E19FC1500374021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				13E0B3641E3543AC00E95AE3 /* ArchivedRecipesViewController.swift */,
 				13C5405C1E19FC1500374021 /* RecipeBuilderViewController.swift */,
 				13E0B3621E35430000E95AE3 /* AddNewIngredientViewController.swift */,
+				139879B61E49905E00004ACE /* ColorDecider.swift */,
 				13C5405E1E19FC1500374021 /* Main.storyboard */,
 				13C540611E19FC1500374021 /* Assets.xcassets */,
 				13C540631E19FC1500374021 /* LaunchScreen.storyboard */,
@@ -214,6 +217,7 @@
 				134973C71E2E04A900B14E3C /* Yeasts+CoreDataProperties.swift in Sources */,
 				13E0B3631E35430000E95AE3 /* AddNewIngredientViewController.swift in Sources */,
 				13C5405B1E19FC1500374021 /* AppDelegate.swift in Sources */,
+				139879B71E49905E00004ACE /* ColorDecider.swift in Sources */,
 				134973CB1E2E04A900B14E3C /* Grains+CoreDataProperties.swift in Sources */,
 				134973CD1E2E04A900B14E3C /* Hops+CoreDataProperties.swift in Sources */,
 				134973C81E2E04A900B14E3C /* Recipes+CoreDataClass.swift in Sources */,

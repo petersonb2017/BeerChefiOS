@@ -14,7 +14,7 @@ import CoreData
 public class Recipes: NSManagedObject {
     
     func calcOG() -> Double{
-        var recipeOG = 0.0
+        var recipeOG = 1.0
         let grains = self.containsGrain?.allObjects as! [GrainWithWeight]
         
         for i in 0 ... (grains.count - 1){
@@ -44,12 +44,9 @@ public class Recipes: NSManagedObject {
             let hopTimesWeight = hops[i].aa*Double(hops[i].weight)
             let firstPowThing = pow(0.000125, (self.calcOG()-1)*(5.5/6.5))
             let eToTheX = (1-pow(M_E,(-0.04*Double(hops[i].time))))
-            
-            
             recipeIBU += ((hopTimesWeight*74.89*firstPowThing*eToTheX/4.15)/self.batchSize)
         }
         
-        //IBU = ((hop1.getAA()*h1Weight)*74.89*((1.65*Math.pow(0.000125,(OG - 1)*(5.5/6.5)))*((1 - Math.pow(Math.E,(-0.04*hTime1)))/4.15)))/5.5;
         return recipeIBU
     }
     
@@ -57,6 +54,17 @@ public class Recipes: NSManagedObject {
         let abv = (self.calcOG() - self.calcFG())*131.25
         //double ABV = (OG - FG)*131.25
         return abv
+    }
+    
+    func calcSRM() -> Double{
+        var srm = 0.0
+        let grains = self.containsGrain?.allObjects as! [GrainWithWeight]
+        
+        for i in 0 ... (grains.count - 1){
+            let grain = grains[i]
+            srm += (grain.srm*grain.weight)/self.batchSize
+        }
+        return srm
     }
  
 }

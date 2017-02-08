@@ -9,6 +9,44 @@
 import UIKit
 import CoreData
 
+class GrainCell: UITableViewCell{
+    @IBOutlet weak var srmLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var ppgLabel: UILabel!
+    @IBOutlet weak var grainIcon: UIImageView!
+    
+    public func configureCell(grain: Grains, weight: Double){
+        let cd = ColorDecider()
+        self.grainIcon.backgroundColor = cd.colorDecider(grain: grain)
+        self.nameLabel.text = grain.name
+        self.ppgLabel.text = NSString(format: "%.1f", grain.ppg) as String
+        self.srmLabel.text = NSString(format: "%.1f", grain.srm) as String
+        self.weightLabel.text = NSString(format: "%.2f", weight) as String
+    }
+}
+
+class HopCell: UITableViewCell{
+    @IBOutlet weak var aaLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    public func configureCell(hop: Hops, weight: Double, time: Int){
+        self.nameLabel.text = hop.name
+        self.aaLabel.text = NSString(format: "%.1f", hop.aa) as String
+        self.timeLabel.text = NSString(format: "%d", time) as String
+        self.weightLabel.text = NSString(format: "%.2f", weight) as String
+    }
+    
+}
+
+class YeastCell: UITableViewCell{
+    @IBOutlet weak var nameLabel: UILabel!
+    public func configureCell(yeast: Yeasts){
+        self.nameLabel.text = yeast.name
+    }
+}
 
 class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource{
     
@@ -38,6 +76,15 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var recipeNameTextField: UITextField!
     @IBOutlet weak var recipeBatchSize: UITextField!
     @IBOutlet weak var recipeAllGrainSegmented: UISegmentedControl!
+    
+    @IBOutlet weak var ogPreviewLabel: UILabel!
+    @IBOutlet weak var fgPreviewLabel: UILabel!
+    @IBOutlet weak var abvPreviewLabel: UILabel!
+    @IBOutlet weak var ibuPreviewLabel: UILabel!
+    @IBOutlet weak var iconPreview: UIImageView!
+    
+    
+    
     
     @IBAction func addGrainButton(){
         if Double((grainWeightTextField!.text)!) != nil{
@@ -221,6 +268,7 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     func getData(){
+        updatePreview()
         let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do{
             grainList = try moc.fetch(Grains.fetchRequest())
@@ -245,18 +293,21 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        
         if tableView == grainAdditionsTableView{
+            let cell = grainAdditionsTableView!.dequeueReusableCell(withIdentifier: "Grain Cell", for: indexPath) as! GrainCell
             let grain = grainSelected[indexPath.row]
-            cell.textLabel?.text = "Name: \(grain.name!) Weight: \(grainWeights[grainSelected.index(of: grain)!])"
+            cell.configureCell(grain: grain, weight: grainWeights[grainSelected.index(of: grain)!])
             return cell
         }else if tableView == hopAdditionsTableView{
+            let cell = hopAdditionsTableView!.dequeueReusableCell(withIdentifier: "Hop Cell", for: indexPath) as! HopCell
             let hop = hopSelected[indexPath.row]
-            cell.textLabel?.text = "Name: \(hop.name!) AA: \(hop.aa) Time: \(hopTimes[hopSelected.index(of: hop)!])"
+            cell.configureCell(hop: hop, weight: hopWeights[hopSelected.index(of: hop)!], time: hopTimes[hopSelected.index(of: hop)!])
             return cell
         }else {
+            let cell = yeastAdditionsTableView!.dequeueReusableCell(withIdentifier: "Yeast Cell", for: indexPath) as! YeastCell
             let yeast = yeastSelected[indexPath.row]
-            cell.textLabel?.text = "Name: \(yeast.name!)"
+            cell.configureCell(yeast: yeast)
             return cell
         }
         
@@ -340,4 +391,56 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
         print("test 2")
     }
+    
+    func updatePreview(){
+        var og: Double = Double(ogPreviewLabel.text!)!
+        var batchSize = 5.0
+        var srm = 0.0
+        var ibu = 0.0
+        if(Double(recipeBatchSize.text!) != nil){
+            batchSize = Double(recipeBatchSize.text!)!
+        }
+        if(grainSelected.isEmpty == false){
+            for grain in grainSelected{
+                og += (grain.ppg*grainWeights[grainSelected.index(of: grain)!])/batchSize
+                srm += (grain.srm*grainWeights[grainSelected.index(of: grain)!])/batchSize
+            }
+        }
+        if(hopSelected.isEmpty == false && grainSelected.isEmpty == false){
+            for hop in hopSelected{
+                let hopTimesWeight = hop.aa*hopWeights[hopSelected.index(of: hop)!]
+                let firstPowThing = pow(0.000125, (og-1)*(5.5/6.5))
+                let eToTheX = (1-pow(M_E,(-0.04*Double(hopTimes[hopSelected.index(of: hop)!]))))
+                ibu += ((hopTimesWeight*74.89*firstPowThing*eToTheX/4.15)/batchSize)
+            }
+        }
+        let fg = (og-1)*0.75+1
+        ogPreviewLabel.text = NSString(format: "%.3f", og) as String
+        fgPreviewLabel.text = NSString(format: "%.3f", fg) as String
+        abvPreviewLabel.text = NSString(format: "%2.2f", (og-fg)*131) as String
+        ibuPreviewLabel.text = NSString(format: "%2.2f", ibu) as String
+        iconPreview.backgroundColor = ColorDecider().colorDecider(color: srm)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
