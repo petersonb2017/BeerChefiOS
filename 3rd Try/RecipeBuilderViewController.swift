@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import QuartzCore
 
 class GrainCell: UITableViewCell{
     @IBOutlet weak var srmLabel: UILabel!
@@ -83,25 +84,38 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var ibuPreviewLabel: UILabel!
     @IBOutlet weak var iconPreview: UIImageView!
     
+    var og: Double = 1.0
+    var batchSize = 5.0
+    var srm = 0.0
+    var ibu = 0.0
+    var hopsAlreadyUsed: [Hops] = []
+    var grainsAlreadyUsed: [Grains] = []
+    
     
     
     
     @IBAction func addGrainButton(){
-        if Double((grainWeightTextField!.text)!) != nil{
+        if Double((grainWeightTextField!.text)!) != nil {
             let grain: Grains = grainList[(grainPickerView?.selectedRow(inComponent: 0))!]
-            grainSelected.append(grain)
-            print(grain)
-            grainWeights.append(Double((grainWeightTextField?.text)!)!)
-            grainAdditionsTableView?.reloadData()
+            if grainSelected.contains(grain){
+                grainWeights[grainSelected.index(of: grain)!] += Double((grainWeightTextField?.text)!)!
+                grainAdditionsTableView?.reloadData()
+            }else{
+                grainSelected.append(grain)
+                grainWeights.append(Double((grainWeightTextField?.text)!)!)
+                grainAdditionsTableView?.reloadData()
+            }
             grainWeightTextField?.text = ""
-            
+            grainWeightTextField?.layer.borderColor = UIColor.clear.cgColor
         } else {
+            textFieldErrorAnimation(textField: grainWeightTextField!, isValid: true)
             grainWeightTextField?.text = ""
         }
+        updatePreview()
     }
     
     @IBAction func addHopButton(){
-        if Int((hopTimeTextField?.text!)!) != nil || Double((hopWeightTextField?.text!)!) != nil{
+        if Int((hopTimeTextField?.text!)!) != nil && Double((hopWeightTextField?.text!)!) != nil{
             let hop: Hops = hopList[(hopPickerView?.selectedRow(inComponent: 0))!]
             hopSelected.append(hop)
             print(hop)
@@ -110,10 +124,15 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
             hopAdditionsTableView?.reloadData()
             hopTimeTextField?.text = ""
             hopWeightTextField?.text = ""
+            hopTimeTextField?.layer.borderColor = UIColor.clear.cgColor
+            hopWeightTextField?.layer.borderColor = UIColor.clear.cgColor
         } else {
+            textFieldErrorAnimation(textField: hopTimeTextField!, isValid: true)
+            textFieldErrorAnimation(textField: hopWeightTextField!, isValid: true)
             hopTimeTextField?.text = ""
             hopWeightTextField?.text = ""
         }
+        updatePreview()
     }
     
     @IBAction func addYeastButton(){
@@ -127,68 +146,72 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
             let yeast: Yeasts = yeastList[(yeastPickerView?.selectedRow(inComponent: 0))!]
             replaceYeast(yeast: yeast)
         }
+        updatePreview()
     }
     
     @IBAction func addRecipeButton(){
-        let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-        
-        var recipe: Recipes
-        var yeast = yeastSelected.first
-        var recipeOG: Double = 0
-        var recipeFG: Double = 0
-        var recipeABV: Double = 0
-        var recipeIBU: Double = 0
-        print("test 1")
-        
-        
-        
-        
-        
-        if let recipe = NSEntityDescription.insertNewObject(forEntityName: "Recipes", into: moc!) as? Recipes{
-            recipe.name = recipeNameTextField.text!
-            recipe.info = recipeInfoTextField.text!
-            recipe.batchSize = Double(recipeBatchSize.text!)!
+        if recipeNameTextField.text != "" || recipeInfoTextField.text != "" || Double(recipeBatchSize.text!) != nil{
+            let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+            
+            var recipe: Recipes
+            var yeast = yeastSelected.first
+            var recipeOG: Double = 0
+            var recipeFG: Double = 0
+            var recipeABV: Double = 0
+            var recipeIBU: Double = 0
+            
+            if let recipe = NSEntityDescription.insertNewObject(forEntityName: "Recipes", into: moc!) as? Recipes{
+                recipe.name = recipeNameTextField.text!
+                recipe.info = recipeInfoTextField.text!
+                recipe.batchSize = Double(recipeBatchSize.text!)!
+            }
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipes")
+            let name =  recipeNameTextField.text!
+            let info = recipeInfoTextField.text!
+            fetch.predicate = NSPredicate(format: "name == %@", name)
+            fetch.predicate = NSPredicate(format: "info == %@", info)
+            do {
+                let recipes = try moc!.fetch(fetch) as! [Recipes]
+                recipe = recipes.first!
+            } catch {
+                fatalError("Failed to fetch employees: \(error)")
+            }
+            
+            
+            let fetchYeast = NSFetchRequest<NSFetchRequestResult>(entityName: "Yeasts")
+            let yeastName = yeast?.name!
+            fetchYeast.predicate = NSPredicate(format: "name == %@", yeastName!)
+            do {
+                let yeasts = try moc!.fetch(fetchYeast) as! [Yeasts]
+                yeast = yeasts.first!
+                yeast?.addToPartOfRecipe(recipe)
+            } catch {
+                fatalError("Failed to fetch employees: \(error)")
+            }
+            
+            
+            changeGrainsToGrainsWithWeightAndAddToCoreData(grainSelected: grainSelected, grainWeights: grainWeights, recipe: recipe)
+            changeHopsToHopsWithWeightAndAddToCoreData(hopsSelected: hopSelected, hopWeights: hopWeights, hopTimes: hopTimes, recipe: recipe)
+            
+            recipeBatchSize.layer.borderColor = UIColor.clear.cgColor
+            recipeNameTextField.layer.borderColor = UIColor.clear.cgColor
+            recipeInfoTextField.layer.borderColor = UIColor.clear.cgColor
+            
+            recipeOG = recipe.calcOG()
+            recipeFG = recipe.calcFG()
+            recipeABV = recipe.calcABV()
+            recipeIBU = recipe.calcIBU()
+            let alertController = UIAlertController(title: "Recipe Added", message: "Name: \(recipe.name!) \r\nOG: \(recipeOG) \r\nFG: \(recipeFG) \r\nABV: \(recipeABV) \r\nIBU: \(recipeIBU)", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            self.present(alertController, animated: true, completion: nil)
+        }else{
+            textFieldErrorAnimation(textField: recipeNameTextField, isValid: recipeNameTextField.text == "")
+            textFieldErrorAnimation(textField: recipeInfoTextField, isValid: recipeInfoTextField.text == "")
+            textFieldErrorAnimation(textField: recipeBatchSize, isValid: Double(recipeBatchSize.text!) == nil)
         }
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        
-        
-        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipes")
-        let name =  recipeNameTextField.text!
-        let info = recipeInfoTextField.text!
-        fetch.predicate = NSPredicate(format: "name == %@", name)
-        fetch.predicate = NSPredicate(format: "info == %@", info)
-        do {
-            let recipes = try moc!.fetch(fetch) as! [Recipes]
-            recipe = recipes.first!
-        } catch {
-            fatalError("Failed to fetch employees: \(error)")
-        }
-        
-        
-        let fetchYeast = NSFetchRequest<NSFetchRequestResult>(entityName: "Yeasts")
-        let yeastName = yeast?.name!
-        fetchYeast.predicate = NSPredicate(format: "name == %@", yeastName!)
-        do {
-            let yeasts = try moc!.fetch(fetchYeast) as! [Yeasts]
-            yeast = yeasts.first!
-            yeast?.addToPartOfRecipe(recipe)
-        } catch {
-            fatalError("Failed to fetch employees: \(error)")
-        }
-        
-        
-        changeGrainsToGrainsWithWeightAndAddToCoreData(grainSelected: grainSelected, grainWeights: grainWeights, recipe: recipe)
-        print("test 3")
-        changeHopsToHopsWithWeightAndAddToCoreData(hopsSelected: hopSelected, hopWeights: hopWeights, hopTimes: hopTimes, recipe: recipe)
-        
-        
-        recipeOG = recipe.calcOG()
-        recipeFG = recipe.calcFG()
-        recipeABV = recipe.calcABV()
-        recipeIBU = recipe.calcIBU()
-        let alertController = UIAlertController(title: "Recipe Added", message: "Name: \(recipe.name!) \r\nOG: \(recipeOG) \r\nFG: \(recipeFG) \r\nABV: \(recipeABV) \r\nIBU: \(recipeIBU)", preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
-        self.present(alertController, animated: true, completion: nil)
     }
     
     
@@ -196,7 +219,6 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         getData()
         
         grainPickerView!.delegate = self
@@ -393,33 +415,56 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     func updatePreview(){
-        var og: Double = Double(ogPreviewLabel.text!)!
-        var batchSize = 5.0
-        var srm = 0.0
-        var ibu = 0.0
+
         if(Double(recipeBatchSize.text!) != nil){
             batchSize = Double(recipeBatchSize.text!)!
         }
+        var i = 0
+        print("\(i) time: \(og)")
+        i = i + 1
         if(grainSelected.isEmpty == false){
             for grain in grainSelected{
-                og += (grain.ppg*grainWeights[grainSelected.index(of: grain)!])/batchSize
-                srm += (grain.srm*grainWeights[grainSelected.index(of: grain)!])/batchSize
+                if grainsAlreadyUsed.contains(grain) == false{
+                    og = og + 0.001*(grain.ppg*grainWeights[grainSelected.index(of: grain)!])/batchSize
+                    srm = srm + (grain.srm*grainWeights[grainSelected.index(of: grain)!])/batchSize
+                    grainsAlreadyUsed.append(grain)
+                }
             }
+            print(grainsAlreadyUsed)
         }
         if(hopSelected.isEmpty == false && grainSelected.isEmpty == false){
             for hop in hopSelected{
-                let hopTimesWeight = hop.aa*hopWeights[hopSelected.index(of: hop)!]
-                let firstPowThing = pow(0.000125, (og-1)*(5.5/6.5))
-                let eToTheX = (1-pow(M_E,(-0.04*Double(hopTimes[hopSelected.index(of: hop)!]))))
-                ibu += ((hopTimesWeight*74.89*firstPowThing*eToTheX/4.15)/batchSize)
+                if hopsAlreadyUsed.contains(hop) == false{
+                    let hopTimesWeight = hop.aa*hopWeights[hopSelected.index(of: hop)!]
+                    let firstPowThing = pow(0.000125, (og-1)*(5.5/6.5))
+                    let eToTheX = (1-pow(M_E,(-0.04*Double(hopTimes[hopSelected.index(of: hop)!]))))
+                    ibu = ibu + ((hopTimesWeight*74.89*firstPowThing*eToTheX/4.15)/batchSize)
+                    hopsAlreadyUsed.append(hop)
+                }
             }
         }
-        let fg = (og-1)*0.75+1
+        let fg = (og-1)*0.25+1
         ogPreviewLabel.text = NSString(format: "%.3f", og) as String
         fgPreviewLabel.text = NSString(format: "%.3f", fg) as String
-        abvPreviewLabel.text = NSString(format: "%2.2f", (og-fg)*131) as String
-        ibuPreviewLabel.text = NSString(format: "%2.2f", ibu) as String
+        abvPreviewLabel.text = NSString(format: "%2.1f", (og-fg)*131) as String
+        ibuPreviewLabel.text = NSString(format: "%2.1f", ibu) as String
         iconPreview.backgroundColor = ColorDecider().colorDecider(color: srm)
+    }
+    
+    func displayErrorMessage(){
+        let alertController = UIAlertController(title: "Could Not Add Ingredient", message: "You entered an invalid Ingredient", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func textFieldErrorAnimation(textField: UITextField, isValid: Bool){
+        if isValid == true{
+            textField.shake()
+            textField.layer.borderWidth = 1
+            textField.layer.borderColor = UIColor.red.cgColor
+        } else{
+            textField.layer.borderColor = UIColor.clear.cgColor
+        }
     }
 }
 

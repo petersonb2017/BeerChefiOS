@@ -8,21 +8,48 @@
 
 import UIKit
 import CoreData
+import QuartzCore
 
 class RecipeCell: UITableViewCell{
 
-    @IBOutlet weak var recipeABVLabel: UILabel!
     @IBOutlet weak var recipeIBULabel: UILabel!
-    @IBOutlet weak var recipeFGLabel: UILabel!
+    @IBOutlet weak var recipeYeastNameLabel: UILabel!
     @IBOutlet weak var recipeOGLabel: UILabel!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeThumbNail: UIImageView!
     
+    func configureCell(recipe: Recipes){
+        let grains = recipe.containsGrain as! [GrainWithWeight]
+        let hops = recipe.containsHop as! [HopWithWeight]
+        let yeast = (recipe.containsYeast as! [Yeasts]).first
+        
+    }
+
+
 }
+
+class GrainsInRecipeCell: UITableViewCell{
+    @IBOutlet weak var grainNameLabel: UILabel!
+    @IBOutlet weak var grainWeightLabel: UILabel!
+    @IBOutlet weak var hopThumbNail: UIImageView!
+    
+}
+
+class HopsInRecipeCell: UITableViewCell{
+    @IBOutlet weak var hopNameLabel: UILabel!
+    @IBOutlet weak var hopWeightLabel: UILabel!
+    @IBOutlet weak var hopTimeLabel: UILabel!
+    @IBOutlet weak var hopThumbNail: UIImageView!
+    
+}
+
 
 class ArchivedRecipesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var recipeTableView: UITableView!
+    @IBOutlet weak var grainsInRecipeTableView: UITableView!
+    @IBOutlet weak var hopsInRecipeTableView: UITableView!
+
     
     var recipeList: [Recipes] = []
     
@@ -75,8 +102,8 @@ class ArchivedRecipesViewController: UIViewController, UITableViewDelegate, UITa
         cell.recipeTitleLabel?.text = recipe.name
         cell.recipeOGLabel?.text = NSString(format: "%.3f", recipe.calcOG()) as String
         cell.recipeFGLabel?.text = NSString(format: "%.3f", recipe.calcFG()) as String
-        cell.recipeIBULabel?.text = NSString(format: "%.3f", recipe.calcIBU()) as String
-        cell.recipeABVLabel?.text = NSString(format: "%.3f", recipe.calcABV()) as String
+        cell.recipeIBULabel?.text = NSString(format: "%.1f", recipe.calcIBU()) as String
+        cell.recipeABVLabel?.text = NSString(format: "%.2f", recipe.calcABV()) as String
         return cell
 
     }

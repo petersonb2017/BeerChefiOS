@@ -14,24 +14,27 @@ import CoreData
 public class Recipes: NSManagedObject {
     
     func calcOG() -> Double{
-        var recipeOG = 1.0
+        var recipeOG = 0.0
         let grains = self.containsGrain?.allObjects as! [GrainWithWeight]
-        
+        if(grains.isEmpty == true) {return 1.0}
         for i in 0 ... (grains.count - 1){
             let grain = grains[i]
             recipeOG += 0.001*((grain.ppg*grain.weight)/self.batchSize)
         }
-        return (1 + (recipeOG - 1)*0.8)
+        return (1 + (recipeOG)*0.8)
         
     }
     
     func calcFG() -> Double{
         let yeasts = self.containsYeast?.allObjects as! [Yeasts]
+        if(yeasts.isEmpty == true) {return 1.0}
         let yeast = yeasts.first
         let attenLow = Double((yeast?.attenLow)!)
         let attenHigh = Double((yeast?.attenHigh)!)
-        let avgAtten = (1-attenLow*attenHigh/200)
-        let recipeFG = (1+(self.calcOG()-1)*avgAtten)
+        let avgAtten = (attenLow+attenHigh)/2
+        //print("average atten for yeast: \(avgAtten)")
+        let recipeFG = (1+(self.calcOG()-1)*(1 - avgAtten/100))
+        //print("Recipe FG: \(recipeFG)")
         return recipeFG
         
     }
@@ -39,7 +42,7 @@ public class Recipes: NSManagedObject {
     func calcIBU() -> Double{
         var recipeIBU = 0.0
         let hops = self.containsHop?.allObjects as! [HopWithWeight]
-        
+        if(hops.isEmpty == true) {return 0.0}
         for i in 0 ... (hops.count - 1){
             let hopTimesWeight = hops[i].aa*Double(hops[i].weight)
             let firstPowThing = pow(0.000125, (self.calcOG()-1)*(5.5/6.5))
@@ -59,7 +62,7 @@ public class Recipes: NSManagedObject {
     func calcSRM() -> Double{
         var srm = 0.0
         let grains = self.containsGrain?.allObjects as! [GrainWithWeight]
-        
+        if(grains.isEmpty == true) {return 0.0}
         for i in 0 ... (grains.count - 1){
             let grain = grains[i]
             srm += (grain.srm*grain.weight)/self.batchSize
