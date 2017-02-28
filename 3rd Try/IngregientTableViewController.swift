@@ -198,13 +198,25 @@ class IngregientTableViewController: UITableViewController {
     func getData(){
         let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do{
-            grainList = try moc.fetch(Grains.fetchRequest())
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Grains")
+            let sectionSortDescriptor = NSSortDescriptor(key: "srm", ascending: true)
+            let sortDescriptors = [sectionSortDescriptor]
+            fetchRequest.sortDescriptors = sortDescriptors
+            grainList = try moc.fetch(fetchRequest) as! [Grains]
         } catch {}
         do{
-            hopList = try moc.fetch(Hops.fetchRequest())
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Hops")
+            let sectionSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+            let sortDescriptors = [sectionSortDescriptor]
+            fetchRequest.sortDescriptors = sortDescriptors
+            hopList = try moc.fetch(fetchRequest) as! [Hops]
         } catch {}
         do{
-            yeastList = try moc.fetch(Yeasts.fetchRequest())
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Yeasts")
+            let sectionSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+            let sortDescriptors = [sectionSortDescriptor]
+            fetchRequest.sortDescriptors = sortDescriptors
+            yeastList = try moc.fetch(fetchRequest) as! [Yeasts]
         } catch {}
         
     }

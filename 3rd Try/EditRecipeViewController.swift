@@ -1,60 +1,23 @@
 //
-//  ViewController.swift
-//  3rd Try
+//  EditRecipeViewController.swift
+//  Beer-App-Swift
 //
-//  Created by Bailey Peterson on 1/1/17.
+//  Created by Bailey Peterson on 2/27/17.
 //  Copyright © 2017 Bailey Peterson. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import CoreData
 import QuartzCore
 
-class GrainCell: UITableViewCell{
-    @IBOutlet weak var srmLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var ppgLabel: UILabel!
-    @IBOutlet weak var grainIcon: UIImageView!
-    
-    public func configureCell(grain: Grains, weight: Double){
-        let cd = ColorDecider()
-        self.grainIcon.backgroundColor = cd.colorDecider(grain: grain)
-        self.nameLabel.text = grain.name
-        self.ppgLabel.text = NSString(format: "%.1f", grain.ppg) as String
-        self.srmLabel.text = NSString(format: "%.1f", grain.srm) as String
-        self.weightLabel.text = NSString(format: "%.2f", weight) as String
-    }
-}
-
-class HopCell: UITableViewCell{
-    @IBOutlet weak var aaLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    
-    public func configureCell(hop: Hops, weight: Double, time: Int){
-        self.nameLabel.text = hop.name
-        self.aaLabel.text = NSString(format: "%.1f", hop.aa) as String
-        self.timeLabel.text = NSString(format: "%d", time) as String
-        self.weightLabel.text = NSString(format: "%.2f", weight) as String
-    }
-    
-}
-
-class YeastCell: UITableViewCell{
-    @IBOutlet weak var nameLabel: UILabel!
-    public func configureCell(yeast: Yeasts){
-        self.nameLabel.text = yeast.name
-    }
-}
-
-class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource{
+class EditRecipeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource{
     
     
     @IBOutlet weak var grainPickerView: UIPickerView?
     @IBOutlet weak var grainWeightTextField: UITextField?
     @IBOutlet weak var grainAdditionsTableView: UITableView?
+    var initialSelectedGrains: [GrainWithWeight] = []
     var grainList: [Grains] = []
     var grainSelected: [Grains] = []
     var grainWeights: [Double] = []
@@ -63,6 +26,7 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var hopWeightTextField: UITextField?
     @IBOutlet weak var hopTimeTextField: UITextField?
     @IBOutlet weak var hopAdditionsTableView: UITableView?
+    var initialSelectedHops: [HopWithWeight] = []
     var hopList: [Hops] = []
     var hopSelected: [Hops] = []
     var hopWeights: [Double] = []
@@ -74,9 +38,15 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     var yeastSelected: [Yeasts] = []
     
     @IBOutlet weak var recipeInfoTextField: UITextField!
+    var initialRecipeInfo:String = String()
     @IBOutlet weak var recipeNameTextField: UITextField!
+    var initialRecipeName:String = String()
     @IBOutlet weak var recipeBatchSize: UITextField!
+    var initialRecipeBatchSize:Double = 0.0
     @IBOutlet weak var recipeAllGrainSegmented: UISegmentedControl!
+    
+    
+    
     
     @IBOutlet weak var ogPreviewLabel: UILabel!
     @IBOutlet weak var fgPreviewLabel: UILabel!
@@ -234,6 +204,10 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        recipeNameTextField.text = initialRecipeName
+        recipeInfoTextField.text = initialRecipeInfo
+        recipeBatchSize.text = String(initialRecipeBatchSize)
+        configureInitialIngredients(grainsWithWeigh: initialSelectedGrains, hopsWithWeightAndTime: initialSelectedHops)
         getData()
         
         grainPickerView!.delegate = self
@@ -375,16 +349,40 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
         }
     }
     
-
+    
     func replaceYeast(yeast: Yeasts){
         yeastSelected.removeAll()
         yeastSelected.append(yeast)
         yeastAdditionsTableView?.reloadData()
     }
     
+    func configureInitialIngredients(grainsWithWeigh: [GrainWithWeight], hopsWithWeightAndTime: [HopWithWeight]){
+        for grainW in grainsWithWeigh{
+            let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Grains")
+            let name = grainW.name
+            fetchRequest.predicate = NSPredicate(format: "name == %@", name!)
+            do{
+                try grainSelected.append((moc?.fetch(fetchRequest) as! [Grains]).first!)
+            }catch{}
+            grainWeights.append(grainW.weight)
+        }
+        for hopW in hopsWithWeightAndTime{
+            let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Hops")
+            let name = hopW.name
+            fetchRequest.predicate = NSPredicate(format: "name == %@", name!)
+            do{
+                try hopSelected.append((moc?.fetch(fetchRequest) as! [Hops]).first!)
+            }catch{}
+            hopWeights.append(hopW.weight)
+            hopTimes.append(Int(hopW.time))
+        }
+    }
+    
     func changeGrainsToGrainsWithWeightAndAddToCoreData(grainSelected: [Grains], grainWeights: [Double], recipe: Recipes){
         var i = 0
-
+        
         for _ in grainSelected{
             
             
@@ -404,9 +402,10 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
             i += 1
         }
         print("test 2")
-
+        
     }
     
+
     
     func changeHopsToHopsWithWeightAndAddToCoreData(hopsSelected: [Hops], hopWeights: [Double], hopTimes: [Int], recipe: Recipes){
         var i = 0
@@ -432,7 +431,7 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     func updatePreview(){
-
+        
         if(Double(recipeBatchSize.text!) != nil){
             batchSize = Double(recipeBatchSize.text!)!
         }else{
@@ -444,7 +443,7 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
         if(grainSelected.isEmpty == false){
             for grain in grainSelected{
                 if grainsAlreadyUsed.contains(grain) == false{
-                    og = og + 0.75*(0.001*(grain.ppg*grainWeights[grainSelected.index(of: grain)!])/batchSize)
+                    og = og + 0.001*(grain.ppg*grainWeights[grainSelected.index(of: grain)!])/batchSize
                     srm = srm + (grain.srm*grainWeights[grainSelected.index(of: grain)!])/batchSize
                     grainsAlreadyUsed.append(grain)
                 }
@@ -499,25 +498,3 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
         getData()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

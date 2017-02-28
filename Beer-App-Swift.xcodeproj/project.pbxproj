@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130D94241E64D2CA00FC3C25 /* EditRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130D94231E64D2CA00FC3C25 /* EditRecipeViewController.swift */; };
 		13254FA71E3D08BD00E39EDC /* HopWithWeight+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13254FA31E3D08BD00E39EDC /* HopWithWeight+CoreDataClass.swift */; };
 		13254FA81E3D08BD00E39EDC /* HopWithWeight+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13254FA41E3D08BD00E39EDC /* HopWithWeight+CoreDataProperties.swift */; };
 		13254FA91E3D08BD00E39EDC /* GrainWithWeight+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13254FA51E3D08BD00E39EDC /* GrainWithWeight+CoreDataClass.swift */; };
@@ -20,6 +21,8 @@
 		134973CB1E2E04A900B14E3C /* Grains+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C31E2E04A900B14E3C /* Grains+CoreDataProperties.swift */; };
 		134973CC1E2E04A900B14E3C /* Hops+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C41E2E04A900B14E3C /* Hops+CoreDataClass.swift */; };
 		134973CD1E2E04A900B14E3C /* Hops+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C51E2E04A900B14E3C /* Hops+CoreDataProperties.swift */; };
+		135E69B41E5CD7D200F21014 /* BeerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135E69B31E5CD7D200F21014 /* BeerTabBarController.swift */; };
+		135E69B61E5CD84300F21014 /* IngredientInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135E69B51E5CD84300F21014 /* IngredientInitializer.swift */; };
 		138BEA9A1E52F06600B7086A /* IngregientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138BEA991E52F06600B7086A /* IngregientTableViewController.swift */; };
 		139879B71E49905E00004ACE /* ColorDecider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139879B61E49905E00004ACE /* ColorDecider.swift */; };
 		13A7AE551E2DA48E00D27940 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13A7AE541E2DA48E00D27940 /* CoreData.framework */; settings = {ATTRIBUTES = (Required, ); }; };
@@ -46,6 +49,7 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		130D94231E64D2CA00FC3C25 /* EditRecipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditRecipeViewController.swift; sourceTree = "<group>"; };
 		13254FA31E3D08BD00E39EDC /* HopWithWeight+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HopWithWeight+CoreDataClass.swift"; sourceTree = "<group>"; };
 		13254FA41E3D08BD00E39EDC /* HopWithWeight+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HopWithWeight+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		13254FA51E3D08BD00E39EDC /* GrainWithWeight+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GrainWithWeight+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 		134973C31E2E04A900B14E3C /* Grains+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grains+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		134973C41E2E04A900B14E3C /* Hops+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hops+CoreDataClass.swift"; sourceTree = "<group>"; };
 		134973C51E2E04A900B14E3C /* Hops+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hops+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		135E69B31E5CD7D200F21014 /* BeerTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTabBarController.swift; sourceTree = "<group>"; };
+		135E69B51E5CD84300F21014 /* IngredientInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientInitializer.swift; sourceTree = "<group>"; };
 		138BEA991E52F06600B7086A /* IngregientTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngregientTableViewController.swift; sourceTree = "<group>"; };
 		139879B61E49905E00004ACE /* ColorDecider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDecider.swift; sourceTree = "<group>"; };
 		13A7AE541E2DA48E00D27940 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -92,6 +98,7 @@
 				13C540611E19FC1500374021 /* Assets.xcassets */,
 				13C540661E19FC1500374021 /* Info.plist */,
 				134973711E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodeld */,
+				135E69B51E5CD84300F21014 /* IngredientInitializer.swift */,
 				13C5405A1E19FC1500374021 /* AppDelegate.swift */,
 				139879B61E49905E00004ACE /* ColorDecider.swift */,
 			);
@@ -141,8 +148,10 @@
 				13E0B3641E3543AC00E95AE3 /* ArchivedRecipesViewController.swift */,
 				13E0B3621E35430000E95AE3 /* AddNewIngredientViewController.swift */,
 				13C5405C1E19FC1500374021 /* RecipeBuilderViewController.swift */,
+				130D94231E64D2CA00FC3C25 /* EditRecipeViewController.swift */,
 				13EBF04A1E4EB15F005A77CD /* GrainSearchTableViewController.swift */,
 				138BEA991E52F06600B7086A /* IngregientTableViewController.swift */,
+				135E69B31E5CD7D200F21014 /* BeerTabBarController.swift */,
 				13C5405E1E19FC1500374021 /* Main.storyboard */,
 				13C540631E19FC1500374021 /* LaunchScreen.storyboard */,
 				138BEA9F1E54250C00B7086A /* Supporting Files */,
@@ -225,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13E0B3651E3543AC00E95AE3 /* ArchivedRecipesViewController.swift in Sources */,
+				135E69B41E5CD7D200F21014 /* BeerTabBarController.swift in Sources */,
 				13254FA71E3D08BD00E39EDC /* HopWithWeight+CoreDataClass.swift in Sources */,
 				13254FA81E3D08BD00E39EDC /* HopWithWeight+CoreDataProperties.swift in Sources */,
 				13C5405D1E19FC1500374021 /* RecipeBuilderViewController.swift in Sources */,
@@ -232,6 +242,7 @@
 				13E0B3631E35430000E95AE3 /* AddNewIngredientViewController.swift in Sources */,
 				13C5405B1E19FC1500374021 /* AppDelegate.swift in Sources */,
 				139879B71E49905E00004ACE /* ColorDecider.swift in Sources */,
+				135E69B61E5CD84300F21014 /* IngredientInitializer.swift in Sources */,
 				134973CB1E2E04A900B14E3C /* Grains+CoreDataProperties.swift in Sources */,
 				134973CD1E2E04A900B14E3C /* Hops+CoreDataProperties.swift in Sources */,
 				134973C81E2E04A900B14E3C /* Recipes+CoreDataClass.swift in Sources */,
@@ -241,6 +252,7 @@
 				134973731E2DFC8D00B14E3C /* Beer-App-Swift.xcdatamodeld in Sources */,
 				134973C91E2E04A900B14E3C /* Recipes+CoreDataProperties.swift in Sources */,
 				13254FAA1E3D08BD00E39EDC /* GrainWithWeight+CoreDataProperties.swift in Sources */,
+				130D94241E64D2CA00FC3C25 /* EditRecipeViewController.swift in Sources */,
 				134973CC1E2E04A900B14E3C /* Hops+CoreDataClass.swift in Sources */,
 				13EBF04B1E4EB15F005A77CD /* GrainSearchTableViewController.swift in Sources */,
 				13254FA91E3D08BD00E39EDC /* GrainWithWeight+CoreDataClass.swift in Sources */,

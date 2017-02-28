@@ -21,7 +21,7 @@ public class Recipes: NSManagedObject {
             let grain = grains[i]
             recipeOG += 0.001*((grain.ppg*grain.weight)/self.batchSize)
         }
-        return (1 + (recipeOG)*0.8)
+        return (1 + (recipeOG)*0.75)
         
     }
     

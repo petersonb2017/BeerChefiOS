@@ -19,5 +19,13 @@ extension Grains {
     @NSManaged public var name: String?
     @NSManaged public var ppg: Double
     @NSManaged public var srm: Double
+    
+    convenience init(name: String, ppg: Double, srm: Double, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
+        let entity = NSEntityDescription.entity(forEntityName: "Grains", in: context)!
+        self.init(entity: entity, insertInto: context)
+        self.name = name
+        self.ppg = ppg
+        self.srm = srm
+    }
 
 }
