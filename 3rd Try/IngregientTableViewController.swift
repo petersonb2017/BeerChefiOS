@@ -9,38 +9,7 @@
 import UIKit
 import CoreData
 
-class IngredientGrainCell: UITableViewCell{
-    @IBOutlet weak var srmLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var ppgLabel: UILabel!
-    @IBOutlet weak var grainIcon: UIImageView!
-    
-    public func configureCell(grain: Grains){
-        let cd = ColorDecider()
-        self.grainIcon.backgroundColor = cd.colorDecider(grain: grain)
-        self.nameLabel.text = grain.name
-        self.ppgLabel.text = NSString(format: "%.1f", grain.ppg) as String
-        self.srmLabel.text = NSString(format: "%.1f", grain.srm) as String
-    }
-}
 
-class IngredientHopCell: UITableViewCell{
-    @IBOutlet weak var aaLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    
-    public func configureCell(hop: Hops){
-        self.nameLabel.text = hop.name
-        self.aaLabel.text = NSString(format: "%.1f", hop.aa) as String
-    }
-    
-}
-
-class IngredientYeastCell: UITableViewCell{
-    @IBOutlet weak var nameLabel: UILabel!
-    public func configureCell(yeast: Yeasts){
-        self.nameLabel.text = yeast.name
-    }
-}
 
 class IngregientTableViewController: UITableViewController {
     let sections = ["Grains", "Hops", "Yeast"]

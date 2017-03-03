@@ -10,56 +10,17 @@ import UIKit
 import CoreData
 import QuartzCore
 
-class GrainCell: UITableViewCell{
-    @IBOutlet weak var srmLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var ppgLabel: UILabel!
-    @IBOutlet weak var grainIcon: UIImageView!
-    
-    public func configureCell(grain: Grains, weight: Double){
-        let cd = ColorDecider()
-        self.grainIcon.backgroundColor = cd.colorDecider(grain: grain)
-        self.nameLabel.text = grain.name
-        self.ppgLabel.text = NSString(format: "%.1f", grain.ppg) as String
-        self.srmLabel.text = NSString(format: "%.1f", grain.srm) as String
-        self.weightLabel.text = NSString(format: "%.2f", weight) as String
-    }
-}
-
-class HopCell: UITableViewCell{
-    @IBOutlet weak var aaLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    
-    public func configureCell(hop: Hops, weight: Double, time: Int){
-        self.nameLabel.text = hop.name
-        self.aaLabel.text = NSString(format: "%.1f", hop.aa) as String
-        self.timeLabel.text = NSString(format: "%d", time) as String
-        self.weightLabel.text = NSString(format: "%.2f", weight) as String
-    }
-    
-}
-
-class YeastCell: UITableViewCell{
-    @IBOutlet weak var nameLabel: UILabel!
-    public func configureCell(yeast: Yeasts){
-        self.nameLabel.text = yeast.name
-    }
-}
 
 class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource{
     
-    
-    @IBOutlet weak var grainPickerView: UIPickerView?
+    @IBOutlet weak var allGrainsTableView: UITableView?
     @IBOutlet weak var grainWeightTextField: UITextField?
     @IBOutlet weak var grainAdditionsTableView: UITableView?
     var grainList: [Grains] = []
     var grainSelected: [Grains] = []
     var grainWeights: [Double] = []
     
-    @IBOutlet weak var hopPickerView: UIPickerView?
+    @IBOutlet weak var allHopsTableView: UITableView?
     @IBOutlet weak var hopWeightTextField: UITextField?
     @IBOutlet weak var hopTimeTextField: UITextField?
     @IBOutlet weak var hopAdditionsTableView: UITableView?
@@ -76,7 +37,6 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var recipeInfoTextField: UITextField!
     @IBOutlet weak var recipeNameTextField: UITextField!
     @IBOutlet weak var recipeBatchSize: UITextField!
-    @IBOutlet weak var recipeAllGrainSegmented: UISegmentedControl!
     
     @IBOutlet weak var ogPreviewLabel: UILabel!
     @IBOutlet weak var fgPreviewLabel: UILabel!
@@ -95,8 +55,18 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     
     @IBAction func addGrainButton(){
-        if Double((grainWeightTextField!.text)!) != nil {
-            let grain: Grains = grainList[(grainPickerView?.selectedRow(inComponent: 0))!]
+        
+        //check to see if grain is valid
+        
+        let validGrainEntered:Bool = (Double((grainWeightTextField!.text)!) != nil && allGrainsTableView?.indexPathForSelectedRow?.row != nil)
+        
+        
+        if validGrainEntered{
+            
+            //if grain is valid add it to selected grains, or if the same grain has been added previously,
+            //add to the weight of that grain.
+            
+            let grain: Grains = grainList[(allGrainsTableView?.indexPathForSelectedRow?.row)!]
             if grainSelected.contains(grain){
                 grainWeights[grainSelected.index(of: grain)!] += Double((grainWeightTextField?.text)!)!
                 grainAdditionsTableView?.reloadData()
@@ -105,6 +75,8 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
                 grainWeights.append(Double((grainWeightTextField?.text)!)!)
                 grainAdditionsTableView?.reloadData()
             }
+            
+            //reset text fields
             grainWeightTextField?.text = ""
             grainWeightTextField?.layer.borderColor = UIColor.clear.cgColor
         } else {
@@ -114,11 +86,25 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
         updatePreview()
     }
     
+    
+    //
     @IBAction func addHopButton(){
-        if Int((hopTimeTextField?.text!)!) != nil && Double((hopWeightTextField?.text!)!) != nil{
+        
+        //check to see if hop entered is valid
+        
+        let validHopEntered: Bool = (Int((hopTimeTextField?.text!)!) != nil && Double((hopWeightTextField?.text!)!) != nil && allHopsTableView?.indexPathForSelectedRow?.row != nil)
+        
+        if validHopEntered{
+            
+            //if hop is valid add it to selected hops, or if the same hop at the same time has been
+            //added previously, add to the weight of that hop.
+            
             var addedToExisting: Bool = false
-            let hop: Hops = hopList[(hopPickerView?.selectedRow(inComponent: 0))!]
+            let hop: Hops = hopList[(allHopsTableView?.indexPathForSelectedRow?.row)!]
             for hop1 in hopSelected{
+                
+                //check to see if same hop at same time exists
+                
                 if hop.name == hop1.name && hopTimes[hopSelected.index(of: hop1)!] == Int((hopTimeTextField?.text)!){
                     hopWeights[hopSelected.index(of: hop1)!] += Double((hopWeightTextField?.text)!)!
                     addedToExisting = true
@@ -150,6 +136,8 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     @IBAction func addYeastButton(){
+        //only one yeast can be added at a time, so this func just adds the yeast or replaces the previous
+        //one
         if yeastSelected.count == 0 {
             let yeast: Yeasts = yeastList[(yeastPickerView?.selectedRow(inComponent: 0))!]
             yeastSelected.append(yeast)
@@ -164,16 +152,17 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     @IBAction func addRecipeButton(){
+        
+        //check to see if a valid hop is entered
+        
         if recipeNameTextField.text != "" || recipeInfoTextField.text != "" || Double(recipeBatchSize.text!) != nil{
             let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
             
             var recipe: Recipes
             var yeast = yeastSelected.first
-            var recipeOG: Double = 0
-            var recipeFG: Double = 0
-            var recipeABV: Double = 0
-            var recipeIBU: Double = 0
+
             
+            //add recipe to CoreData
             if let recipe = NSEntityDescription.insertNewObject(forEntityName: "Recipes", into: moc!) as? Recipes{
                 recipe.name = recipeNameTextField.text!
                 recipe.info = recipeInfoTextField.text!
@@ -181,7 +170,7 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
             }
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
-            
+            //fetch the recipe so that we can access the func in the Recipes class
             let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Recipes")
             let name =  recipeNameTextField.text!
             let info = recipeInfoTextField.text!
@@ -194,7 +183,7 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
                 fatalError("Failed to fetch employees: \(error)")
             }
             
-            
+            //set relationship between yeast and recipe
             let fetchYeast = NSFetchRequest<NSFetchRequestResult>(entityName: "Yeasts")
             let yeastName = yeast?.name!
             fetchYeast.predicate = NSPredicate(format: "name == %@", yeastName!)
@@ -206,23 +195,34 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
                 fatalError("Failed to fetch employees: \(error)")
             }
             
-            
+            //set relationship between grains and recipe
             changeGrainsToGrainsWithWeightAndAddToCoreData(grainSelected: grainSelected, grainWeights: grainWeights, recipe: recipe)
+            
+            //set relationship between hops and recipe
             changeHopsToHopsWithWeightAndAddToCoreData(hopsSelected: hopSelected, hopWeights: hopWeights, hopTimes: hopTimes, recipe: recipe)
             
+            
+            //reset textfield error indicators
             recipeBatchSize.layer.borderColor = UIColor.clear.cgColor
             recipeNameTextField.layer.borderColor = UIColor.clear.cgColor
             recipeInfoTextField.layer.borderColor = UIColor.clear.cgColor
             
-            recipeOG = recipe.calcOG()
-            recipeFG = recipe.calcFG()
-            recipeABV = recipe.calcABV()
-            recipeIBU = recipe.calcIBU()
+            let recipeOG = recipe.calcOG()
+            let recipeFG = recipe.calcFG()
+            let recipeABV = recipe.calcABV()
+            let recipeIBU = recipe.calcIBU()
+            
+            //present message confirming the recipe that was added
             let alertController = UIAlertController(title: "Recipe Added", message: "Name: \(recipe.name!) \r\nOG: \(recipeOG) \r\nFG: \(recipeFG) \r\nABV: \(recipeABV) \r\nIBU: \(recipeIBU)", preferredStyle: UIAlertControllerStyle.alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
             self.present(alertController, animated: true, completion: nil)
+            
             clearRecipe()
+            
         }else{
+            
+            //error animation is displayed for the text fields with invalid inputs
+            
             textFieldErrorAnimation(textField: recipeNameTextField, isValid: recipeNameTextField.text == "")
             textFieldErrorAnimation(textField: recipeInfoTextField, isValid: recipeInfoTextField.text == "")
             textFieldErrorAnimation(textField: recipeBatchSize, isValid: Double(recipeBatchSize.text!) == nil)
@@ -236,10 +236,11 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
         super.viewDidLoad()
         getData()
         
-        grainPickerView!.delegate = self
-        grainPickerView!.dataSource=self
-        hopPickerView!.delegate = self
-        hopPickerView!.dataSource = self
+
+        allGrainsTableView!.delegate = self
+        allGrainsTableView!.dataSource = self
+        allHopsTableView!.delegate = self
+        allHopsTableView!.delegate = self
         yeastPickerView!.delegate = self
         yeastPickerView!.dataSource = self
         grainAdditionsTableView!.dataSource = self
@@ -254,10 +255,10 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     override func viewWillAppear(_ animated: Bool) {
         getData()
         
-        grainPickerView!.delegate = self
-        grainPickerView!.dataSource=self
-        hopPickerView!.delegate = self
-        hopPickerView!.dataSource = self
+        allGrainsTableView!.delegate = self
+        allGrainsTableView!.dataSource = self
+        allHopsTableView!.delegate = self
+        allHopsTableView!.delegate = self
         yeastPickerView!.delegate = self
         yeastPickerView!.dataSource = self
         grainAdditionsTableView!.dataSource = self
@@ -278,34 +279,11 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
         // Dispose of any resources that can be recreated.
     }
     
-    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        if pickerView == grainPickerView {
-            return grainList.count
-        } else if pickerView == hopPickerView{
-            return hopList.count
-        }else if pickerView == yeastPickerView{
-            return yeastList.count
-        }
-        return 0
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == grainPickerView {
-            return grainList[row].name
-        } else if pickerView == hopPickerView{
-            return hopList[row].name
-        }else if pickerView == yeastPickerView{
-            return yeastList[row].name
-        }
-        return ""
-    }
-    
+    //get grain, hop, and yeast lists from coredata
     func getData(){
         updatePreview()
+        
         let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         do{
             grainList = try moc.fetch(Grains.fetchRequest())
@@ -318,17 +296,44 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
         } catch {}
     }
     
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return yeastList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return yeastList[row].name
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == grainAdditionsTableView{
             return grainSelected.count
         }else if tableView == hopAdditionsTableView{
             return hopSelected.count
-        }else {
+        }else if tableView == yeastAdditionsTableView{
             return yeastSelected.count
-        }
+        }else if tableView == allGrainsTableView{
+            return grainList.count
+        }else{ return hopList.count }
     }
     
+    //configure section headings
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if tableView == allGrainsTableView {
+            return "Select Grain and Adjuncts for Recipe"
+        }else if tableView == grainAdditionsTableView {
+            return "Selected Grains and Adjuncts"
+        }else if tableView == allHopsTableView {
+            return "Select Hops for Recipe"
+        }else if tableView == hopAdditionsTableView {
+            return "Selected Hops"
+        }else{return ""}
+    }
+    
+    //configure cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView == grainAdditionsTableView{
@@ -341,16 +346,25 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
             let hop = hopSelected[indexPath.row]
             cell.configureCell(hop: hop, weight: hopWeights[hopSelected.index(of: hop)!], time: hopTimes[hopSelected.index(of: hop)!])
             return cell
-        }else {
+        }else if tableView == yeastAdditionsTableView{
             let cell = yeastAdditionsTableView!.dequeueReusableCell(withIdentifier: "Yeast Cell", for: indexPath) as! YeastCell
             let yeast = yeastSelected[indexPath.row]
             cell.configureCell(yeast: yeast)
+            return cell
+        }else if tableView == allHopsTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Ingredient Hop Cell", for: indexPath as IndexPath) as! IngredientHopCell
+            cell.configureCell(hop: hopList[indexPath.row])
+            return cell
+        }else/* if tableView == allGrainsTableView */{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Ingredient Grain Cell", for: indexPath) as! IngredientGrainCell
+            let grain = grainList[indexPath.row]
+            cell.configureCell(grain: grain)
             return cell
         }
         
     }
     
-    
+    //configure delete settings
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if tableView == grainAdditionsTableView{
             if editingStyle == .delete{
@@ -383,76 +397,72 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
     }
     
     func changeGrainsToGrainsWithWeightAndAddToCoreData(grainSelected: [Grains], grainWeights: [Double], recipe: Recipes){
-        var i = 0
 
-        for _ in grainSelected{
+        for grain in grainSelected{
             
-            
+            //for each grain in grain selected, create new object with weight and add to CoreData
             
             let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-            
             if let grainW = NSEntityDescription.insertNewObject(forEntityName: "GrainWithWeight", into: moc!) as? GrainWithWeight{
-                grainW.name = grainSelected[i].name
-                grainW.ppg = grainSelected[i].ppg
-                grainW.srm = grainSelected[i].srm
-                grainW.weight = grainWeights[i]
+                grainW.name = grain.name
+                grainW.ppg = grain.ppg
+                grainW.srm = grain.srm
+                grainW.weight = grainWeights[grainSelected.index(of: grain)!]
                 grainW.partOfRecipe = recipe
             }
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
-            print("counter \(i)")
-            i += 1
         }
-        print("test 2")
 
     }
     
     
     func changeHopsToHopsWithWeightAndAddToCoreData(hopsSelected: [Hops], hopWeights: [Double], hopTimes: [Int], recipe: Recipes){
-        var i = 0
-        for _ in hopsSelected{
+        for hop in hopsSelected{
             
-            
+            //for each hop in hop selected, create new object with weight and time and add to CoreData
+
             
             let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-            
             if let hopW = NSEntityDescription.insertNewObject(forEntityName: "HopWithWeight", into: moc!) as? HopWithWeight{
-                hopW.name = hopsSelected[i].name
-                hopW.aa = hopsSelected[i].aa
-                hopW.time = Int16(hopTimes[i])
-                hopW.weight = hopWeights[i]
+                hopW.name = hop.name
+                hopW.aa = hop.aa
+                hopW.time = Int16(hopTimes[hopSelected.index(of: hop)!])
+                hopW.weight = hopWeights[hopSelected.index(of: hop)!]
                 hopW.partOfRecipe = recipe
             }
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
-            print("counter \(i)")
-            i += 1
         }
-        print("test 2")
     }
     
     func updatePreview(){
 
+        //check to see if batch size is set, if not default to 5 gals
         if(Double(recipeBatchSize.text!) != nil){
             batchSize = Double(recipeBatchSize.text!)!
         }else{
             batchSize = 5.0
         }
-        var i = 0
-        print("\(i) time: \(og)")
-        i = i + 1
         if(grainSelected.isEmpty == false){
             for grain in grainSelected{
+                
+                //check to see if that grain has already been acounted for in the preview OG
+                
                 if grainsAlreadyUsed.contains(grain) == false{
                     og = og + 0.75*(0.001*(grain.ppg*grainWeights[grainSelected.index(of: grain)!])/batchSize)
                     srm = srm + (grain.srm*grainWeights[grainSelected.index(of: grain)!])/batchSize
                     grainsAlreadyUsed.append(grain)
                 }
             }
-            print(grainsAlreadyUsed)
         }
+        
         if(hopSelected.isEmpty == false && grainSelected.isEmpty == false){
             for hop in hopSelected{
+                
+                //check to see if that hop has already been acounted for in the preview IBU
+
+                
                 if hopsAlreadyUsed.contains(hop) == false{
                     let hopTimesWeight = hop.aa*hopWeights[hopSelected.index(of: hop)!]
                     let firstPowThing = pow(0.000125, (og-1)*(5.5/6.5))
@@ -463,6 +473,10 @@ class RecipeBuilderViewController: UIViewController, UIPickerViewDelegate, UIPic
             }
         }
         let fg = (og-1)*0.25+1
+        
+        //configure preview section labels
+        
+        
         ogPreviewLabel.text = NSString(format: "%.3f", og) as String
         fgPreviewLabel.text = NSString(format: "%.3f", fg) as String
         abvPreviewLabel.text = NSString(format: "%2.1f", (og-fg)*131) as String
