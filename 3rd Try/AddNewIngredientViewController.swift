@@ -10,19 +10,24 @@ import UIKit
 import CoreData
 import QuartzCore
 
-class AddNewIngredientViewController: UIViewController{
+class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var newGrainName: UITextField!
     @IBOutlet weak var newGrainPPG: UITextField!
     @IBOutlet weak var newGrainSRM: UITextField!
+    
     @IBOutlet weak var newHopName: UITextField!
     @IBOutlet weak var newHopAA: UITextField!
     @IBOutlet weak var newHopForm: UISegmentedControl!
+    
     @IBOutlet weak var newYeastName: UITextField!
     @IBOutlet weak var newYeastAttenLow: UITextField!
     @IBOutlet weak var newYeastAttenHigh: UITextField!
     @IBOutlet weak var newYeastFermLow: UITextField!
     @IBOutlet weak var newYeastFermHigh: UITextField!
+    
+    @IBOutlet weak var newIngredientScrollView: UIScrollView!
+    
     
     @IBAction func addGrain(){
         let textFields: [UITextField] = [newGrainName, newGrainSRM, newGrainPPG]
@@ -67,9 +72,12 @@ class AddNewIngredientViewController: UIViewController{
     
     
     override func viewDidLoad() {
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
         super.viewDidLoad()
-        
-        
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -151,6 +159,45 @@ class AddNewIngredientViewController: UIViewController{
         displayYeastAddedMessage()
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func keyboardWillShow(_ notification:NSNotification){
+        //give room at the bottom of the scroll view, so it doesn't cover up anything the user needs to tap
+        var userInfo = notification.userInfo!
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
+        
+        var contentInset:UIEdgeInsets = self.newIngredientScrollView.contentInset
+        contentInset.bottom = keyboardFrame.size.height
+        self.newIngredientScrollView.contentInset = contentInset
+        self.viewDidLayoutSubviews()
+    }
+    
+    func keyboardWillHide(_ notification:NSNotification){
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
+        self.newIngredientScrollView.contentInset = contentInset
+        self.viewDidLayoutSubviews()
+    }
+    /*
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if (textField == newYeastName || textField == newYeastFermLow || textField == newYeastFermHigh || textField == newYeastAttenLow || textField == newYeastFermHigh){
+                        self.viewDidLayoutSubviews()
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        if (textField == newYeastName || textField == newYeastFermLow || textField == newYeastFermHigh || textField == newYeastAttenLow || textField == newYeastFermHigh){
+            newIngredientScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            self.viewDidLayoutSubviews()
+            textField.resignFirstResponder()
+        }
+    }
+    */
     func displayErrorMessage(){
         let alertController = UIAlertController(title: "Could Not Add Ingredient", message: "You entered an invalid Ingredient", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))

@@ -19,10 +19,13 @@ class GrainCell: UITableViewCell{
     
     public func configureCell(grain: Grains, weight: Double){
         let cd = ColorDecider()
-        self.grainIcon.backgroundColor = cd.colorDecider(grain: grain)
+        let image: UIImage = cd.colorDecider(grain: grain)
+        self.grainIcon.contentMode = UIViewContentMode.scaleToFill
+        self.grainIcon.image = image
         self.nameLabel.text = grain.name
         self.ppgLabel.text = NSString(format: "%.1f", grain.ppg) as String
         self.srmLabel.text = NSString(format: "%.1f", grain.srm) as String
         self.weightLabel.text = NSString(format: "%.2f", weight) as String
+
     }
 }

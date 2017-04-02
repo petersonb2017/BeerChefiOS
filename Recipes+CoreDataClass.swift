@@ -19,9 +19,13 @@ public class Recipes: NSManagedObject {
         if(grains.isEmpty == true) {return 1.0}
         for i in 0 ... (grains.count - 1){
             let grain = grains[i]
-            recipeOG += 0.001*((grain.ppg*grain.weight)/self.batchSize)
+            var extraction = self.efficiency
+            if grain.isExtract == true{
+                extraction = 1.0
+            }
+            recipeOG += 0.001*((grain.ppg*grain.weight*extraction)/self.batchSize)
         }
-        return (1 + (recipeOG)*0.75)
+        return (1 + (recipeOG))
         
     }
     

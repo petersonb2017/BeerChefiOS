@@ -22,6 +22,16 @@ extension Yeasts {
     @NSManaged public var fermTempLow: Int16
     @NSManaged public var name: String?
     @NSManaged public var partOfRecipe: NSSet?
+    
+    convenience init(name: String,attenLow: Int16,attenHigh: Int16,fermTempLow: Int16,fermTempHigh: Int16, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
+        let entity = NSEntityDescription.entity(forEntityName: "Yeasts", in: context)!
+        self.init(entity: entity, insertInto: context)
+        self.name = name
+        self.attenLow = attenLow
+        self.attenHigh = attenHigh
+        self.fermTempLow = fermTempLow
+        self.fermTempHigh = fermTempHigh
+    }
 
 }
 

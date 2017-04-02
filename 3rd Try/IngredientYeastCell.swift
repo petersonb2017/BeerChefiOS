@@ -10,7 +10,9 @@ import UIKit
 
 class IngredientYeastCell: UITableViewCell{
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var tempLabel: UILabel!
     public func configureCell(yeast: Yeasts){
+        tempLabel.text = "\(yeast.fermTempLow)-\(yeast.fermTempHigh)"
         self.nameLabel.text = yeast.name
     }
 }

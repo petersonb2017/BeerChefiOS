@@ -2,7 +2,7 @@
 //  Recipes+CoreDataProperties.swift
 //  Beer-App-Swift
 //
-//  Created by Bailey Peterson on 2/5/17.
+//  Created by Bailey Peterson on 3/8/17.
 //  Copyright © 2017 Bailey Peterson. All rights reserved.
 //
 
@@ -19,9 +19,22 @@ extension Recipes {
     @NSManaged public var batchSize: Double
     @NSManaged public var info: String?
     @NSManaged public var name: String?
+    @NSManaged public var efficiency: Double
     @NSManaged public var containsGrain: NSSet?
     @NSManaged public var containsHop: NSSet?
     @NSManaged public var containsYeast: NSSet?
+    
+    convenience init(batchSize: Double, info: String, name: String, efficiency: Double, grains: NSSet, hops: NSSet, yeast: NSSet, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
+        let entity = NSEntityDescription.entity(forEntityName: "Recipes", in: context)!
+        self.init(entity: entity, insertInto: context)
+        self.batchSize = batchSize
+        self.info = info
+        self.name = name
+        self.efficiency = efficiency
+        self.containsGrain = grains
+        self.containsHop = hops
+        self.containsYeast = yeast
+    }
 
 }
 

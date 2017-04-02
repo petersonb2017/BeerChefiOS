@@ -16,12 +16,15 @@ class HopCell: UITableViewCell{
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var hopIcon: UIImageView!
     
     public func configureCell(hop: Hops, weight: Double, time: Int){
         self.nameLabel.text = hop.name
         self.aaLabel.text = NSString(format: "%.1f", hop.aa) as String
         self.timeLabel.text = NSString(format: "%d", time) as String
         self.weightLabel.text = NSString(format: "%.2f", weight) as String
+        self.hopIcon.contentMode = UIViewContentMode.scaleToFill
+        self.hopIcon.image = ColorDecider().colorDecider(hop: hop)
     }
     
 }

@@ -7,31 +7,42 @@
 //
 
 import UIKit
+import CoreData
 
 class BeerTabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        if launchedBefore  {
-            print("Not first launch.")
+        
+        let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        var grainList = [Grains]()
+        var hopList = [Hops]()
+        var yeastList = [Yeasts]()
+        do{
+            let fetchGrain = NSFetchRequest<NSFetchRequestResult>(entityName: "Grains")
+            let fetchHop = NSFetchRequest<NSFetchRequestResult>(entityName: "Hops")
+            let fetchYeast = NSFetchRequest<NSFetchRequestResult>(entityName: "Yeasts")
+            
+            grainList = try moc.fetch(fetchGrain) as! [Grains]
+            hopList = try moc.fetch(fetchHop) as! [Hops]
+            yeastList = try moc.fetch(fetchYeast) as! [Yeasts]
+        } catch {}
+        if grainList.isEmpty && hopList.isEmpty && yeastList.isEmpty{
             IngredientInitializer().addBaseIngredients()
-        } else {
-            print("First launch, setting UserDefault.")
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
         }
-        super.viewDidLoad()
 
+        super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

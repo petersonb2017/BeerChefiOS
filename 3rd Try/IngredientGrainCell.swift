@@ -14,10 +14,16 @@ class IngredientGrainCell: UITableViewCell{
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ppgLabel: UILabel!
     @IBOutlet weak var grainIcon: UIImageView!
+    @IBOutlet weak var typeLabel: UILabel!
     
     public func configureCell(grain: Grains){
         let cd = ColorDecider()
-        self.grainIcon.backgroundColor = cd.colorDecider(grain: grain)
+        let image: UIImage = cd.colorDecider(grain: grain)
+        if grain.isExtract{
+            typeLabel.text = "Extract/Sugar"
+        }else{typeLabel.text = "Grain"}
+        self.grainIcon.contentMode = UIViewContentMode.scaleToFill
+        self.grainIcon.image = image
         self.nameLabel.text = grain.name
         self.ppgLabel.text = NSString(format: "%.1f", grain.ppg) as String
         self.srmLabel.text = NSString(format: "%.1f", grain.srm) as String
