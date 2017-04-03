@@ -12,21 +12,9 @@ import CoreData
 
 class IngredientInitializer{
     func addBaseIngredients(){
-        var grainList: [Grains] = []
-        var hopList: [Hops]
-        var yeastList: [Yeasts]
         let moc = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        do{
-            grainList = try moc.fetch(Grains.fetchRequest())
-        } catch {}
-        do{
-            hopList = try moc.fetch(Hops.fetchRequest())
-        } catch {}
-        do{
-            yeastList = try moc.fetch(Yeasts.fetchRequest())
-        } catch {}
-        let initialGrainList = [
-                                Grains(name: "2-Row Pale Malt", ppg: 37, srm: 1.8, isExtract: false, insertIntoManagedObjectContext: moc),
+
+        _ =  [Grains(name: "2-Row Pale Malt", ppg: 37, srm: 1.8, isExtract: false, insertIntoManagedObjectContext: moc),
                                 Grains(name: "Munich Malt", ppg: 35, srm: 10, isExtract: false, insertIntoManagedObjectContext: moc),
                                 Grains(name: "6-Row Brewers Malt", ppg: 35, srm: 1.8, isExtract: false, insertIntoManagedObjectContext: moc),
                                 Grains(name: "Amber Malt", ppg: 32.5, srm: 1.5, isExtract: false, insertIntoManagedObjectContext: moc),
@@ -50,11 +38,17 @@ class IngredientInitializer{
                                 Grains(name: "Flaked Corn", ppg: 39, srm: 1, isExtract: false,insertIntoManagedObjectContext: moc),
                                 Grains(name: "Flaked Barley", ppg: 32, srm: 2, isExtract: false,insertIntoManagedObjectContext: moc),
                                 Grains(name: "Flaked Wheat", ppg: 36, srm: 2, isExtract: false,insertIntoManagedObjectContext: moc),
-                                Grains(name: "Flaked Rice", ppg: 38, srm: 1, isExtract: false,insertIntoManagedObjectContext: moc)
+                                Grains(name: "Flaked Rice", ppg: 38, srm: 1, isExtract: false,insertIntoManagedObjectContext: moc),
+                                Grains(name: "Sugar", ppg: 46, srm: 0.0, isExtract: true,insertIntoManagedObjectContext: moc),
+                                Grains(name: "Light LME", ppg: 36, srm: 4, isExtract: true,insertIntoManagedObjectContext: moc),
+                                Grains(name: "Light DME", ppg: 44, srm: 4, isExtract: true,insertIntoManagedObjectContext: moc),
+                                Grains(name: "Amber LME", ppg: 36, srm: 10, isExtract: true,insertIntoManagedObjectContext: moc),
+                                Grains(name: "Amber DME", ppg: 44, srm: 10, isExtract: true,insertIntoManagedObjectContext: moc),
+                                Grains(name: "Dark LME", ppg: 36, srm: 30, isExtract: true,insertIntoManagedObjectContext: moc),
+                                Grains(name: "Dark DME", ppg: 44, srm: 30, isExtract: true,insertIntoManagedObjectContext: moc)
         ]
         
-        let initialHopList = [
-            Hops(name: "East Kent Goldings", aa: 5.0, pellet: true, insertIntoManagedObjectContext: moc),
+        _  = [Hops(name: "East Kent Goldings", aa: 5.0, pellet: true, insertIntoManagedObjectContext: moc),
             Hops(name: "Fuggles", aa: 4, pellet: true, insertIntoManagedObjectContext: moc),
             Hops(name: "Crystal", aa: 3, pellet: true, insertIntoManagedObjectContext: moc),
             Hops(name: "Hallertauer", aa: 3.5, pellet: true, insertIntoManagedObjectContext: moc),
@@ -81,15 +75,14 @@ class IngredientInitializer{
             Hops(name: "Target", aa: 9.0, pellet: true, insertIntoManagedObjectContext: moc)
         ]
         
-        let initialYeastList = [
-            Yeasts(name: "Coopers Ale", attenLow: 75, attenHigh: 85, fermTempLow: 65, fermTempHigh: 75, insertIntoManagedObjectContext: moc),
+        _ =  [Yeasts(name: "Coopers Ale", attenLow: 75, attenHigh: 85, fermTempLow: 65, fermTempHigh: 75, insertIntoManagedObjectContext: moc),
             Yeasts(name: "Wyeast 1056 American Ale", attenLow: 73, attenHigh: 77, fermTempLow: 60, fermTempHigh: 72, insertIntoManagedObjectContext: moc),
             Yeasts(name: "Wyeast 1272 American Ale II", attenLow: 72, attenHigh: 76, fermTempLow: 60, fermTempHigh: 72, insertIntoManagedObjectContext: moc),
             Yeasts(name: "American Ale WLP060", attenLow: 72, attenHigh: 82, fermTempLow: 68, fermTempHigh: 72, insertIntoManagedObjectContext: moc),
             Yeasts(name: "California Ale WLP051", attenLow: 73, attenHigh: 80, fermTempLow: 68, fermTempHigh: 73, insertIntoManagedObjectContext: moc),
             Yeasts(name: "US-05 Fermentis", attenLow: 77, attenHigh: 81, fermTempLow: 59, fermTempHigh: 75, insertIntoManagedObjectContext: moc),
             Yeasts(name: "Muntons Standard", attenLow: 75, attenHigh: 85, fermTempLow: 57, fermTempHigh: 77, insertIntoManagedObjectContext: moc),
-            Yeasts(name: "Wyeast 2035 American Lager", attenLow: 75, attenHigh: 85, fermTempLow: 65, fermTempHigh: 75, insertIntoManagedObjectContext: moc),
+            Yeasts(name: "Wyeast 2035 American Lager", attenLow: 75, attenHigh: 85, fermTempLow: 48, fermTempHigh: 58, insertIntoManagedObjectContext: moc),
             Yeasts(name: "Cream Ale WLP80", attenLow: 75, attenHigh: 80, fermTempLow: 65, fermTempHigh: 70, insertIntoManagedObjectContext: moc),
             Yeasts(name: "Wyeast 2112 California Lager", attenLow: 67, attenHigh: 71, fermTempLow: 58, fermTempHigh: 68, insertIntoManagedObjectContext: moc),
             Yeasts(name: "Wyeast 3711 French Saison", attenLow: 77, attenHigh: 85, fermTempLow: 65, fermTempHigh: 77, insertIntoManagedObjectContext: moc),

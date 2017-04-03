@@ -15,6 +15,7 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var newGrainName: UITextField!
     @IBOutlet weak var newGrainPPG: UITextField!
     @IBOutlet weak var newGrainSRM: UITextField!
+    @IBOutlet weak var newGrainForm: UISegmentedControl!
     
     @IBOutlet weak var newHopName: UITextField!
     @IBOutlet weak var newHopAA: UITextField!
@@ -130,8 +131,17 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
             grain.name = newGrainName.text!
             grain.ppg = Double(newGrainPPG.text!)!
             grain.srm = Double(newGrainSRM.text!)!
+            if newGrainForm.selectedSegmentIndex == 0 {
+                grain.isExtract = false
+            }else{ grain.isExtract = true}
         }
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        newGrainPPG.isEnabled = false
+        newGrainSRM.isEnabled = false
+        newGrainName.isEnabled = false
+        newGrainPPG.isEnabled = true
+        newGrainSRM.isEnabled = true
+        newGrainName.isEnabled = true
         displayGrainAddedMessage()
     }
     
@@ -140,9 +150,15 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
         if let hop = NSEntityDescription.insertNewObject(forEntityName: "Hops", into: moc!) as? Hops{
             hop.name = newHopName.text!
             hop.aa = Double(newHopAA.text!)!
-            hop.pellet = newHopForm.isEnabledForSegment(at: 0)
+            if newHopForm.selectedSegmentIndex == 0{
+            hop.pellet = true
+            }else{hop.pellet = false}
         }
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        newHopAA.isEnabled = false
+        newHopName.isEnabled = false
+        newHopAA.isEnabled = true
+        newHopName.isEnabled = true
         displayHopAddedMessage()
     }
     
@@ -156,6 +172,16 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
             yeast.attenHigh = Int16(Double(newYeastAttenHigh.text!)!)
         }
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        newYeastName.isEnabled = false
+        newYeastFermLow.isEnabled = false
+        newYeastFermHigh.isEnabled = false
+        newYeastAttenLow.isEnabled = false
+        newYeastFermHigh.isEnabled = false
+        newYeastName.isEnabled = true
+        newYeastFermLow.isEnabled = true
+        newYeastFermHigh.isEnabled = true
+        newYeastAttenLow.isEnabled = true
+        newYeastFermHigh.isEnabled = true
         displayYeastAddedMessage()
     }
     
@@ -199,7 +225,7 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
     }
     */
     func displayErrorMessage(){
-        let alertController = UIAlertController(title: "Could Not Add Ingredient", message: "You entered an invalid Ingredient", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Could Not Add Ingredient", message: "", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }

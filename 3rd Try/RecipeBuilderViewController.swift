@@ -99,6 +99,8 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
             //reset text fields
             grainWeightTextField?.text = ""
             grainWeightTextField?.layer.borderColor = UIColor.clear.cgColor
+            grainWeightTextField?.isEnabled = false
+            grainWeightTextField?.isEnabled = true
             showOrHideSelectedTableView(type: "grain")
         } else {
             textFieldErrorAnimation(textFields: [grainWeightTextField!], isValid: true)
@@ -114,7 +116,7 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
         let validHopEntered: Bool = (Int((hopTimeTextField?.text!)!) != nil && Double((hopWeightTextField?.text!)!) != nil && allHopsTableView?.indexPathForSelectedRow?.row != nil)
         var time: Int
         var weight: Double
-
+        
         
         
         if validHopEntered{
@@ -157,6 +159,10 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
         showOrHideSelectedTableView(type: "hop")
         resetHopSearchBar()
         updatePreview()
+        hopTimeTextField?.isEnabled = false
+        hopWeightTextField?.isEnabled = false
+        hopTimeTextField?.isEnabled = true
+        hopWeightTextField?.isEnabled = true
     }
     
     @IBAction func addYeastButton(){
@@ -592,6 +598,7 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
         }
+
         let fg = (og-1)*0.25+1
         
         //configure preview section labels

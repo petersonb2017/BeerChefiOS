@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "137D980E1E922E5100318E1C"
+               BuildableName = "Beer-App-Swift-Tests.xctest"
+               BlueprintName = "Beer-App-Swift-Tests"
+               ReferencedContainer = "container:Beer-App-Swift.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

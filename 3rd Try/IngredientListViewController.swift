@@ -22,7 +22,6 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         getData()
         ingredientListTableView.dataSource = self
@@ -56,7 +55,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }else {return yeastList.count}
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    /*func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0
         {
             return sections[0]
@@ -66,8 +65,12 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         }else {
             return sections[2]
         }
+    }*/
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 0))
+        return view
     }
-    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -130,14 +133,16 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
         do{
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Grains")
             let sectionSortDescriptor = NSSortDescriptor(key: "srm", ascending: true)
-            let sortDescriptors = [sectionSortDescriptor]
+            let sectionSortDescriptor0 = NSSortDescriptor(key: "name", ascending: true)
+            let sortDescriptors = [sectionSortDescriptor, sectionSortDescriptor0]
             fetchRequest.sortDescriptors = sortDescriptors
             grainList = try moc.fetch(fetchRequest) as! [Grains]
         } catch {}
         do{
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Hops")
             let sectionSortDescriptor = NSSortDescriptor(key: "aa", ascending: true)
-            let sortDescriptors = [sectionSortDescriptor]
+            let sectionSortDescriptor0 = NSSortDescriptor(key: "name", ascending: true)
+            let sortDescriptors = [sectionSortDescriptor, sectionSortDescriptor0]
             fetchRequest.sortDescriptors = sortDescriptors
             hopList = try moc.fetch(fetchRequest) as! [Hops]
         } catch {}
