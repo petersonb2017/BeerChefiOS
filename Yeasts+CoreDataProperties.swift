@@ -1,8 +1,8 @@
 //
 //  Yeasts+CoreDataProperties.swift
-//  Beer-App-Swift
+//  BeerChef
 //
-//  Created by Bailey Peterson on 2/5/17.
+//  Created by Bailey Peterson on 4/3/17.
 //  Copyright © 2017 Bailey Peterson. All rights reserved.
 //
 
@@ -13,7 +13,7 @@ import CoreData
 extension Yeasts {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Yeasts> {
-        return NSFetchRequest<Yeasts>(entityName: "Yeasts");
+        return NSFetchRequest<Yeasts>(entityName: "Yeasts")
     }
 
     @NSManaged public var attenHigh: Int16
@@ -23,7 +23,7 @@ extension Yeasts {
     @NSManaged public var name: String?
     @NSManaged public var partOfRecipe: NSSet?
     
-    convenience init(name: String,attenLow: Int16,attenHigh: Int16,fermTempLow: Int16,fermTempHigh: Int16, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
+    convenience init(name:String, attenLow: Int16 ,attenHigh: Int16,fermTempLow: Int16 ,fermTempHigh: Int16, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
         let entity = NSEntityDescription.entity(forEntityName: "Yeasts", in: context)!
         self.init(entity: entity, insertInto: context)
         self.name = name

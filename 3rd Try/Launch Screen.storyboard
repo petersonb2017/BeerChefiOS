@@ -173,12 +173,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beer Chef" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="GJd-Yh-RWb">
-                                <rect key="frame" x="126.5" y="264.5" width="122.5" height="38"/>
+                                <rect key="frame" x="122" y="262" width="132.5" height="40.5"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="DevanagariSangamMN" family="Devanagari Sangam MN" pointSize="28"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="32"/>
                                 <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                <color key="shadowColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="2" height="2"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Knz-eB-9HP">
                                 <rect key="frame" x="64.5" y="311" width="245" height="44"/>

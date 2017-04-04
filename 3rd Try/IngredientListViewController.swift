@@ -24,6 +24,7 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         getData()
+        self.hideKeyboardWhenTappedAround()
         ingredientListTableView.dataSource = self
         ingredientListTableView.delegate = self
         

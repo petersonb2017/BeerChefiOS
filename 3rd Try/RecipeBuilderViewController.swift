@@ -68,15 +68,11 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func addGrainButton(){
         
-        //check to see if grain is valid
-        
         let validGrainEntered:Bool = (Double((grainWeightTextField!.text)!) != nil && allGrainsTableView?.indexPathForSelectedRow?.row != nil)
         
-        
-
         if validGrainEntered{
             
-            //if grain is valid add it to selected grains, or if the same grain has been added previously,
+            //if the same grain has been added previously,
             //add to the weight of that grain.
             
             var grain = Grains()
@@ -99,8 +95,7 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
             //reset text fields
             grainWeightTextField?.text = ""
             grainWeightTextField?.layer.borderColor = UIColor.clear.cgColor
-            grainWeightTextField?.isEnabled = false
-            grainWeightTextField?.isEnabled = true
+
             showOrHideSelectedTableView(type: "grain")
         } else {
             textFieldErrorAnimation(textFields: [grainWeightTextField!], isValid: true)
@@ -111,8 +106,6 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
     
     @IBAction func addHopButton(){
         
-        //check to see if hop entered is valid
-        
         let validHopEntered: Bool = (Int((hopTimeTextField?.text!)!) != nil && Double((hopWeightTextField?.text!)!) != nil && allHopsTableView?.indexPathForSelectedRow?.row != nil)
         var time: Int
         var weight: Double
@@ -121,14 +114,14 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
         
         if validHopEntered{
             
-            //if hop is valid add it to selected hops, or if the same hop at the same time has been
+            //if the same hop at the same time has been
             //added previously, add to the weight of that hop.
             
             var addedToExisting: Bool = false
             var hop = Hops()
             weight = Double((hopWeightTextField?.text)!)!
             time = Int((hopTimeTextField?.text)!)!
-            if time > 90 {time = 90}
+            if time > 90 {time = 90}//not longer that 90 minute boils
             if time < 0 {time = 0}
             
             if hopSearchBar.text != "" {
@@ -136,7 +129,7 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
             }else {hop = hopList[(allHopsTableView?.indexPathForSelectedRow?.row)!]}
             for hop1 in hopSelected{
                 
-                //check to see if same hop at same time exists
+                //check to see if same hop at same time exists, if it does set value of bool addedToExisting
                 
                 if hop.name == hop1.name && hopTimes[hopSelected.index(of: hop1)!] == time{
                     hopWeights[hopSelected.index(of: hop1)!] += weight
@@ -159,10 +152,6 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
         showOrHideSelectedTableView(type: "hop")
         resetHopSearchBar()
         updatePreview()
-        hopTimeTextField?.isEnabled = false
-        hopWeightTextField?.isEnabled = false
-        hopTimeTextField?.isEnabled = true
-        hopWeightTextField?.isEnabled = true
     }
     
     @IBAction func addYeastButton(){
@@ -190,11 +179,16 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
     @IBAction func addRecipeButton(){
         
         //check to see if a valid recipe is entered
-        
-        if recipeNameTextField.text != "" || recipeInfoTextField.text != "" || Double(recipeBatchSize.text!) != nil{
-            let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-            var efficiency: Double = Double(recipeEfficiency.text!)!
+        var efficiency: Double = 1.1
+        if Double(recipeEfficiency.text!) != nil{
+            efficiency = Double(recipeEfficiency.text!)!
             if efficiency > 1{efficiency = efficiency*0.01}
+        }
+        
+        
+        if recipeNameTextField.text != "" || recipeInfoTextField.text != "" || Double(recipeBatchSize.text!) != nil || efficiency < 1{
+            let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+
             
             let recipe = Recipes(batchSize: Double(recipeBatchSize.text!)!,
                                  info: recipeInfoTextField.text!,
@@ -225,9 +219,7 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
             
         }else{
             
-            //error animation is displayed for the text fields with invalid inputs
-            
-            textFieldErrorAnimation(textFields: [recipeNameTextField, recipeInfoTextField, recipeBatchSize, recipeEfficiency], isValid: recipeNameTextField.text == "")
+            textFieldErrorAnimation(textFields: [recipeNameTextField, recipeInfoTextField, recipeBatchSize, recipeEfficiency], isValid: true)
         }
     }
     
@@ -236,7 +228,7 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
         showOrHideSelectedTableView(type: "grain")
         showOrHideSelectedTableView(type: "hop")
         showOrHideSelectedTableView(type: "yeast")
@@ -390,19 +382,19 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch tableView {
         case allGrainsTableView!:
-            return "Select Grain and Adjuncts for Recipe"
+            return "Select Fermentables"
             
         case grainAdditionsTableView!:
-            return "Selected Grains and Adjuncts"
+            return "Selected Fermentables"
             
         case allHopsTableView!:
-            return "Select Hops for Recipe"
+            return "Select Hops"
             
         case hopAdditionsTableView!:
             return "Selected Hops"
             
         case allYeastTableView!:
-            return "Select Yeast for Recipe"
+            return "Select Yeast"
             
         case yeastAdditionsTableView!:
             return "Selected Yeast"
@@ -540,7 +532,7 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
             
             let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
             
-            grains.append(GrainWithWeight(name: grain.name!, ppg: grain.ppg, srm: grain.srm, weight: grainWeights[grainSelected.index(of: grain)!], isExtract: grain.isExtract, insertIntoManagedObjectContext: moc))
+            grains.append(GrainWithWeight(name: grain.name!, ppg: grain.ppg, srm: grain.srm, isExtract: grain.isExtract, weight: grainWeights[grainSelected.index(of: grain)!], insertIntoManagedObjectContext: moc))
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
             
         }
@@ -557,7 +549,7 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
             //for each hop in hop selected, create new object with weight and time and add to CoreData
 
             let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-            hops.append(HopWithWeight(name: hop.name!, aa: hop.aa, time: Int16(hopTimes[hopsSelected.index(of: hop)!]), weight: hopWeights[hopsSelected.index(of: hop)!], pellet: hop.pellet, insertIntoManagedObjectContext: moc))
+            hops.append(HopWithWeight(name: hop.name!, aa: hop.aa, pellet: hop.pellet, time: Int16(hopTimes[hopsSelected.index(of: hop)!]), weight: hopWeights[hopsSelected.index(of: hop)!], insertIntoManagedObjectContext: moc))
             (UIApplication.shared.delegate as! AppDelegate).saveContext()
         }
         return NSSet(array: hops)
@@ -598,15 +590,14 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             }
         }
-
-        let fg = (og-1)*0.25+1
+        let fg: Double = (og-1)*0.25+1
         
         //configure preview section labels
         
         
         ogPreviewLabel.text = NSString(format: "%.3f", og) as String
         fgPreviewLabel.text = NSString(format: "%.3f", fg) as String
-        abvPreviewLabel.text = NSString(format: "%2.1f", (og-fg)*131) as String
+        abvPreviewLabel.text = NSString(format: "%2.1f", ((og-fg)*131)) as String
         ibuPreviewLabel.text = NSString(format: "%2.1f", ibu) as String
         iconPreview.contentMode = UIViewContentMode.scaleToFill
         iconPreview.image = ColorDecider().colorDeciderRecipe(color: srm)
@@ -628,6 +619,7 @@ class RecipeBuilderViewController: UIViewController, UITableViewDelegate, UITabl
                 textField.layer.borderColor = UIColor.clear.cgColor
             }
         }
+        self.newRecipeScrollView.scrollRectToVisible((textFields.first?.frame)!, animated: true)
     }
     
     func clearRecipe(){

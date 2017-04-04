@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13C540561E19FC1400374021"
-               BuildableName = "Beer-App-Swift.app"
-               BlueprintName = "Beer-App-Swift"
-               ReferencedContainer = "container:Beer-App-Swift.xcodeproj">
+               BuildableName = "BeerChef.app"
+               BlueprintName = "BeerChef"
+               ReferencedContainer = "container:BeerChef.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "137D980E1E922E5100318E1C"
-               BuildableName = "Beer-App-Swift-Tests.xctest"
-               BlueprintName = "Beer-App-Swift-Tests"
-               ReferencedContainer = "container:Beer-App-Swift.xcodeproj">
+               BuildableName = "BeerChef-Tests.xctest"
+               BlueprintName = "BeerChef-Tests"
+               ReferencedContainer = "container:BeerChef.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13C540561E19FC1400374021"
-            BuildableName = "Beer-App-Swift.app"
-            BlueprintName = "Beer-App-Swift"
-            ReferencedContainer = "container:Beer-App-Swift.xcodeproj">
+            BuildableName = "BeerChef.app"
+            BlueprintName = "BeerChef"
+            ReferencedContainer = "container:BeerChef.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13C540561E19FC1400374021"
-            BuildableName = "Beer-App-Swift.app"
-            BlueprintName = "Beer-App-Swift"
-            ReferencedContainer = "container:Beer-App-Swift.xcodeproj">
+            BuildableName = "BeerChef.app"
+            BlueprintName = "BeerChef"
+            ReferencedContainer = "container:BeerChef.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13C540561E19FC1400374021"
-            BuildableName = "Beer-App-Swift.app"
-            BlueprintName = "Beer-App-Swift"
-            ReferencedContainer = "container:Beer-App-Swift.xcodeproj">
+            BuildableName = "BeerChef.app"
+            BlueprintName = "BeerChef"
+            ReferencedContainer = "container:BeerChef.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

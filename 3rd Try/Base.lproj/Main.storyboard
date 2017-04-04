@@ -15,7 +15,7 @@
         <!--New Recipe-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="RecipeBuilderViewController" customModule="Beer_App_Swift" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RecipeBuilderViewController" customModule="BeerChef" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yT0-xs-3YV"/>
                         <viewControllerLayoutGuide type="bottom" id="Up0-iO-Xnu"/>
@@ -111,7 +111,7 @@
                                                 <color key="separatorColor" red="1" green="1" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="sectionIndexColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="0.7843137255" alpha="0.99508723159509205" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <searchBar key="tableHeaderView" contentMode="redraw" id="6zs-Xl-mZ8">
+                                                <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" id="6zs-Xl-mZ8">
                                                     <rect key="frame" x="0.0" y="0.0" width="365" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -121,7 +121,7 @@
                                                     </connections>
                                                 </searchBar>
                                                 <prototypes>
-                                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Grain Cell" id="97W-sy-4GA" customClass="IngredientGrainCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Grain Cell" id="97W-sy-4GA" customClass="IngredientGrainCell" customModule="BeerChef" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="72" width="365" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="97W-sy-4GA" id="8hy-7u-all">
@@ -269,7 +269,7 @@
                                                 <color key="separatorColor" red="0.90588235289999997" green="0.87843137250000003" blue="0.73333333329999995" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="sectionIndexColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Grain Cell" id="Ev2-Ej-Yra" customClass="GrainCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Grain Cell" id="Ev2-Ej-Yra" customClass="GrainCell" customModule="BeerChef" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="365" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ev2-Ej-Yra" id="vbJ-2C-XuC">
@@ -371,7 +371,7 @@
                                                 <color key="separatorColor" red="0.90588235289999997" green="0.87843137250000003" blue="0.73333333329999995" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="sectionIndexColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="sectionIndexBackgroundColor" red="0.90588235289999997" green="0.87843137250000003" blue="0.73333333329999995" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <searchBar key="tableHeaderView" contentMode="redraw" id="hWx-pK-hr7" userLabel="Hop Search Bar">
+                                                <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" id="hWx-pK-hr7" userLabel="Hop Search Bar">
                                                     <rect key="frame" x="0.0" y="0.0" width="365" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -381,7 +381,7 @@
                                                     </connections>
                                                 </searchBar>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Hop Cell" id="BVS-ps-Bhc" customClass="IngredientHopCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Hop Cell" id="BVS-ps-Bhc" customClass="IngredientHopCell" customModule="BeerChef" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="72" width="365" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BVS-ps-Bhc" id="ug8-DT-U7m">
@@ -514,7 +514,7 @@
                                                 <color key="separatorColor" red="0.90588235289999997" green="0.87843137250000003" blue="0.73333333329999995" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="sectionIndexColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Hop Cell" id="itQ-Tu-J6S" customClass="HopCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Hop Cell" id="itQ-Tu-J6S" customClass="HopCell" customModule="BeerChef" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="365" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="itQ-Tu-J6S" id="g8k-3S-tLE">
@@ -620,7 +620,7 @@
                                                     <constraint firstAttribute="height" constant="200" id="g00-Pu-HeH"/>
                                                 </constraints>
                                                 <color key="sectionIndexBackgroundColor" red="1" green="0.72156862749999995" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <searchBar key="tableHeaderView" contentMode="redraw" id="M6X-yd-Vuh">
+                                                <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" id="M6X-yd-Vuh">
                                                     <rect key="frame" x="0.0" y="0.0" width="365" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -630,11 +630,11 @@
                                                     </connections>
                                                 </searchBar>
                                                 <prototypes>
-                                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="All Yeast Cell" rowHeight="46" id="ZI3-Mc-RcO" customClass="YeastCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="All Yeast Cell" rowHeight="46" id="ZI3-Mc-RcO" customClass="YeastCell" customModule="BeerChef" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="72" width="365" height="46"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZI3-Mc-RcO" id="1q2-Gc-4I3">
-                                                            <rect key="frame" x="0.0" y="0.0" width="365" height="46"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="365" height="45"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rpr-Ou-PRH">
@@ -721,11 +721,11 @@
                                                 </constraints>
                                                 <color key="sectionIndexColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <prototypes>
-                                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Yeast Cell" rowHeight="46" id="SSe-i2-wXv" customClass="YeastCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Yeast Cell" rowHeight="46" id="SSe-i2-wXv" customClass="YeastCell" customModule="BeerChef" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="365" height="46"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SSe-i2-wXv" id="wzq-z1-d2a">
-                                                            <rect key="frame" x="0.0" y="0.0" width="365" height="46"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="365" height="45"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbB-4L-0vy">
@@ -955,7 +955,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1460"/>
                     <connections>
-                        <outlet property="abvPreviewLabel" destination="Uqu-8V-KS6" id="T1N-i1-srl"/>
+                        <outlet property="abvPreviewLabel" destination="Uqu-8V-KS6" id="2Cg-4T-4B9"/>
                         <outlet property="allGrainsTableView" destination="OEo-6U-V92" id="i6N-0J-z2g"/>
                         <outlet property="allHopsTableView" destination="NYo-gb-I6S" id="06O-Ar-ENY"/>
                         <outlet property="allYeastTableView" destination="rgo-ow-ByI" id="NIw-3u-hoM"/>
@@ -989,7 +989,7 @@
         <!--New Ingredient-->
         <scene sceneID="uvs-N3-bjZ">
             <objects>
-                <viewController id="Ybh-1m-k1H" customClass="AddNewIngredientViewController" customModule="Beer_App_Swift" sceneMemberID="viewController">
+                <viewController id="Ybh-1m-k1H" customClass="AddNewIngredientViewController" customModule="BeerChef" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="810-p6-v5j"/>
                         <viewControllerLayoutGuide type="bottom" id="3QM-wo-Uor"/>
@@ -1013,13 +1013,13 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ln1-Af-HYG">
                                                         <rect key="frame" x="0.0" y="5" width="359" height="227"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Grain or Adjunct" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ena-mn-5rb">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Fermentable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ena-mn-5rb">
                                                                 <rect key="frame" x="19" y="0.0" width="321" height="34"/>
                                                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="28"/>
                                                                 <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grain Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhS-8e-Yow">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhS-8e-Yow">
                                                                 <rect key="frame" x="108" y="46" width="143" height="21"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="143" id="RZ6-kI-djO"/>
@@ -1042,63 +1042,70 @@
                                                                     <outlet property="delegate" destination="Ybh-1m-k1H" id="ulB-ta-31M"/>
                                                                 </connections>
                                                             </textField>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="8WT-pq-kJF">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8WT-pq-kJF">
                                                                 <rect key="frame" x="4" y="124" width="351" height="21"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  PPG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpo-38-ut5">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="39" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="21" id="GdI-Wm-WXX"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                                        <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SRM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwF-Ze-WVT">
-                                                                        <rect key="frame" x="74.5" y="0.0" width="170" height="21"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="170" id="0O0-1w-D4s"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                                                        <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Apt-Nk-cos">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="175.5" height="21"/>
+                                                                        <subviews>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PPG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lpo-38-ut5">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="88" height="21"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="21" id="GdI-Wm-WXX"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                                                <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SRM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwF-Ze-WVT">
+                                                                                <rect key="frame" x="88" y="0.0" width="87.5" height="21"/>
+                                                                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                                                <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                        </subviews>
+                                                                    </stackView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEq-7P-7Pd">
-                                                                        <rect key="frame" x="280" y="0.0" width="71" height="21"/>
+                                                                        <rect key="frame" x="175.5" y="0.0" width="175.5" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BEm-iB-PF7">
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BEm-iB-PF7">
                                                                 <rect key="frame" x="4" y="158" width="351" height="30"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="            " textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ri9-of-URx" userLabel="Grain PPG Text Field">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="68.5" height="30"/>
-                                                                        <color key="tintColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="30" id="1Xj-le-fsi"/>
-                                                                        </constraints>
-                                                                        <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
-                                                                        <connections>
-                                                                            <outlet property="delegate" destination="Ybh-1m-k1H" id="Tz7-Mw-AV4"/>
-                                                                        </connections>
-                                                                    </textField>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="753" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="             " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nIr-UT-gnC" userLabel="Grain Lovi Text Field">
-                                                                        <rect key="frame" x="73.5" y="0.0" width="72.5" height="30"/>
-                                                                        <color key="tintColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
-                                                                        <connections>
-                                                                            <outlet property="delegate" destination="Ybh-1m-k1H" id="uaN-K3-qES"/>
-                                                                        </connections>
-                                                                    </textField>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wA5-jR-DBx">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="173" height="30"/>
+                                                                        <subviews>
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="            " textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ri9-of-URx" userLabel="Grain PPG Text Field">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
+                                                                                <color key="tintColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="30" id="1Xj-le-fsi"/>
+                                                                                </constraints>
+                                                                                <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                                                                <connections>
+                                                                                    <outlet property="delegate" destination="Ybh-1m-k1H" id="Tz7-Mw-AV4"/>
+                                                                                </connections>
+                                                                            </textField>
+                                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="753" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="           " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nIr-UT-gnC" userLabel="Grain Lovi Text Field">
+                                                                                <rect key="frame" x="89" y="0.0" width="84" height="30"/>
+                                                                                <color key="tintColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
+                                                                                <connections>
+                                                                                    <outlet property="delegate" destination="Ybh-1m-k1H" id="uaN-K3-qES"/>
+                                                                                </connections>
+                                                                            </textField>
+                                                                        </subviews>
+                                                                    </stackView>
                                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vbc-qX-Ohw">
-                                                                        <rect key="frame" x="151" y="0.0" width="200" height="31"/>
+                                                                        <rect key="frame" x="178" y="0.0" width="173" height="31"/>
                                                                         <color key="backgroundColor" red="1" green="1" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <segments>
                                                                             <segment title="Grain"/>
@@ -1220,7 +1227,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="v5q-ex-mJE">
                                                                 <rect key="frame" x="4" y="159" width="351" height="30"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cMh-i8-w0Q" userLabel="Hop AA Text Field">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="%" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cMh-i8-w0Q" userLabel="Hop AA Text Field">
                                                                         <rect key="frame" x="0.0" y="0.0" width="173" height="30"/>
                                                                         <color key="tintColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1343,13 +1350,13 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="yd6-nH-aG2">
                                                                 <rect key="frame" x="4" y="112.5" width="343" height="20.5"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Atten Low" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ph-Gl-YJH">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attenuation Low" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ph-Gl-YJH" userLabel="A">
                                                                         <rect key="frame" x="0.0" y="0.0" width="171.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                                                         <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Atten High" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xH2-6S-Y0f">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attenuation High" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xH2-6S-Y0f">
                                                                         <rect key="frame" x="171.5" y="0.0" width="171.5" height="20.5"/>
                                                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
                                                                         <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1360,7 +1367,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xAq-PE-12J">
                                                                 <rect key="frame" x="4" y="143" width="343" height="30"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N60-9r-nl5" userLabel="Yeast Atten Low Text Field">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="%" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N60-9r-nl5" userLabel="Yeast Atten Low Text Field">
                                                                         <rect key="frame" x="0.0" y="0.0" width="169" height="30"/>
                                                                         <color key="tintColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
@@ -1373,7 +1380,7 @@
                                                                             <outlet property="delegate" destination="Ybh-1m-k1H" id="z45-76-we9"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c9a-bT-OQl" userLabel="Yeast Atten High Text Field">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="%" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c9a-bT-OQl" userLabel="Yeast Atten High Text Field">
                                                                         <rect key="frame" x="174" y="0.0" width="169" height="30"/>
                                                                         <color key="tintColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1411,7 +1418,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-X0-rPJ">
                                                                 <rect key="frame" x="4" y="215" width="343" height="30"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etl-vK-nGt" userLabel="Yeast Ferm Temp Low Text Field">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="°F" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etl-vK-nGt" userLabel="Yeast Ferm Temp Low Text Field">
                                                                         <rect key="frame" x="0.0" y="0.0" width="169" height="30"/>
                                                                         <color key="tintColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
@@ -1424,7 +1431,7 @@
                                                                             <outlet property="delegate" destination="Ybh-1m-k1H" id="gLl-bw-iFc"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EN1-y1-Kuh" userLabel="Yeast Ferm Temp High Text Field">
+                                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="°F" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EN1-y1-Kuh" userLabel="Yeast Ferm Temp High Text Field">
                                                                         <rect key="frame" x="174" y="0.0" width="169" height="30"/>
                                                                         <color key="tintColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <color key="textColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1545,7 +1552,7 @@
         <!--Ingredients List-->
         <scene sceneID="qqq-rn-T47">
             <objects>
-                <viewController id="dzf-rg-i50" userLabel="Ingredients List" customClass="IngredientListViewController" customModule="Beer_App_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dzf-rg-i50" userLabel="Ingredients List" customClass="IngredientListViewController" customModule="BeerChef" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ICH-bo-ntc"/>
                         <viewControllerLayoutGuide type="bottom" id="dM9-nz-fic"/>
@@ -1564,7 +1571,7 @@
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" red="0.33008530740000003" green="0.2410668135" blue="0.12445030360000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Grain Cell" id="7iz-5O-C8j" customClass="IngredientGrainCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Grain Cell" id="7iz-5O-C8j" customClass="IngredientGrainCell" customModule="BeerChef" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7iz-5O-C8j" id="ncR-H7-mTq">
@@ -1648,7 +1655,7 @@
                                             <outlet property="typeLabel" destination="z5o-nK-qkM" id="BAW-X6-NvV"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Hop Cell" id="uOG-ET-Iyg" customClass="IngredientHopCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Hop Cell" id="uOG-ET-Iyg" customClass="IngredientHopCell" customModule="BeerChef" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uOG-ET-Iyg" id="IA9-4X-bfQ">
@@ -1718,7 +1725,7 @@
                                             <outlet property="typeLabel" destination="gmE-fb-Ngh" id="rws-yK-njK"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Yeast Cell" rowHeight="46" id="53d-c1-08D" customClass="IngredientYeastCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Ingredient Yeast Cell" rowHeight="46" id="53d-c1-08D" customClass="IngredientYeastCell" customModule="BeerChef" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="116" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="53d-c1-08D" id="49o-gZ-7L3">
@@ -1803,7 +1810,7 @@
         <!--Archived Recipes-->
         <scene sceneID="3wt-Lz-bWY">
             <objects>
-                <viewController title="Archived Recipes" id="eSU-tE-W1y" customClass="ArchivedRecipesViewController" customModule="Beer_App_Swift" sceneMemberID="viewController">
+                <viewController title="Archived Recipes" id="eSU-tE-W1y" customClass="ArchivedRecipesViewController" customModule="BeerChef" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BEL-kI-5c8"/>
                         <viewControllerLayoutGuide type="bottom" id="ecm-gj-UaJ"/>
@@ -1821,7 +1828,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Recipe Cell" rowHeight="200" id="zOy-2h-ODb" customClass="RecipeCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="Recipe Cell" rowHeight="200" id="zOy-2h-ODb" customClass="RecipeCell" customModule="BeerChef" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zOy-2h-ODb" id="EAG-HS-MJF">
@@ -1905,7 +1912,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="157.5" height="150"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <prototypes>
-                                                                <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Grain in Recipe Cell" id="uVz-uR-w8O" customClass="GrainsInRecipeCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                                                <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Grain in Recipe Cell" id="uVz-uR-w8O" customClass="GrainsInRecipeCell" customModule="BeerChef" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="28" width="157" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uVz-uR-w8O" id="4YW-aq-htr">
@@ -1968,7 +1975,7 @@
                                                             <rect key="frame" x="162.5" y="0.0" width="157.5" height="150"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <prototypes>
-                                                                <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Hop in Recipe Cell" id="pKf-6q-F21" customClass="HopsInRecipeCell" customModule="Beer_App_Swift" customModuleProvider="target">
+                                                                <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Hop in Recipe Cell" id="pKf-6q-F21" customClass="HopsInRecipeCell" customModule="BeerChef" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="28" width="158" height="44"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pKf-6q-F21" id="99O-PY-mQo">
@@ -2097,7 +2104,7 @@
         <!--Beer Tab Bar Controller-->
         <scene sceneID="HrQ-fn-ehD">
             <objects>
-                <tabBarController id="3dy-Cb-BBF" customClass="BeerTabBarController" customModule="Beer_App_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="3dy-Cb-BBF" customClass="BeerTabBarController" customModule="BeerChef" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="2Go-l8-Mvv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2112,7 +2119,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMZ-uH-qPo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-42" y="663"/>
+            <point key="canvasLocation" x="-249" y="668"/>
         </scene>
     </scenes>
     <resources>

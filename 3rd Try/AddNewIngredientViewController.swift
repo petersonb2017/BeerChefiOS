@@ -28,45 +28,54 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var newYeastFermHigh: UITextField!
     
     @IBOutlet weak var newIngredientScrollView: UIScrollView!
+    struct TextFieldWithBool{
+        var textField: UITextField? = nil
+        var isValid = false
+    }
     
     
     @IBAction func addGrain(){
-        let textFields: [UITextField] = [newGrainName, newGrainSRM, newGrainPPG]
-        textFieldErrorAnimation(textField: newGrainName, isValid: newGrainName.text == "")
-        textFieldErrorAnimation(textField: newGrainPPG, isValid: Double(newGrainPPG.text!) == nil)
-        textFieldErrorAnimation(textField: newGrainSRM, isValid: Double(newGrainSRM.text!) == nil)
+        let grainTextFields: [TextFieldWithBool] = [
+            TextFieldWithBool(textField: newGrainName, isValid: newGrainName.text == ""),
+            TextFieldWithBool(textField: newGrainPPG, isValid: Double(newGrainPPG.text!) == nil),
+            TextFieldWithBool(textField: newGrainSRM, isValid: Double(newGrainSRM.text!) == nil)]
+        
+        textFieldErrorAnimation(textFields: grainTextFields)
         if checkGrainValidity() == false{
             displayErrorMessage()
         }else{
             addGrainToCoreData()
-            resetTextFields(textFields: textFields)
+            resetTextFields(textFields: grainTextFields)
         }
     }
     
     @IBAction func addHop(){
-        let textFields: [UITextField] = [newHopName, newHopAA]
-        textFieldErrorAnimation(textField: newHopName, isValid: newHopName.text == "")
-        textFieldErrorAnimation(textField: newHopAA, isValid: Double(newHopAA.text!) == nil)
+        let hopTextFields: [TextFieldWithBool] = [TextFieldWithBool(textField: newHopName, isValid: newHopName.text == ""), TextFieldWithBool(textField: newHopAA, isValid: Double(newHopAA.text!) == nil)]
+        textFieldErrorAnimation(textFields: hopTextFields)
+
         if checkHopValidity() == false{
             displayErrorMessage()
         }else{
             addHopToCoreData()
-            resetTextFields(textFields: textFields)
+            resetTextFields(textFields: hopTextFields)
         }
     }
     
     @IBAction func addYeast(){
-        let textFields: [UITextField] = [newYeastAttenHigh, newYeastName, newYeastFermHigh, newYeastFermLow, newYeastAttenLow]
-        textFieldErrorAnimation(textField: newYeastFermHigh, isValid: Int16(newYeastFermHigh.text!) == nil)
-        textFieldErrorAnimation(textField: newYeastFermLow, isValid: Int16(newYeastFermLow.text!) == nil)
-        textFieldErrorAnimation(textField: newYeastAttenHigh, isValid: Int16(newYeastAttenHigh.text!) == nil)
-        textFieldErrorAnimation(textField: newYeastAttenLow, isValid: Int16(newYeastAttenLow.text!) == nil)
-        textFieldErrorAnimation(textField: newYeastName, isValid: newYeastName.text == "")
+        let yeastTextFields: [TextFieldWithBool] =
+            [
+                TextFieldWithBool(textField: newYeastFermHigh, isValid: Int16(newYeastFermHigh.text!) == nil),
+                TextFieldWithBool(textField: newYeastFermLow, isValid: Int16(newYeastFermLow.text!) == nil),
+                TextFieldWithBool(textField: newYeastAttenHigh, isValid: Int16(newYeastAttenHigh.text!) == nil),
+                TextFieldWithBool(textField: newYeastAttenLow, isValid: Int16(newYeastAttenLow.text!) == nil),
+                TextFieldWithBool(textField: newYeastName, isValid: newYeastName.text == "")
+            ]
+        textFieldErrorAnimation(textFields: yeastTextFields)
         if checkYeastValidity() == false{
             displayErrorMessage()
         }else{
             addYeastToCoreData()
-            resetTextFields(textFields: textFields)
+            resetTextFields(textFields: yeastTextFields)
         }
     }
     
@@ -76,31 +85,29 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        self.hideKeyboardWhenTappedAround()
         
         super.viewDidLoad()
 
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func textFieldErrorAnimation(textField: UITextField, isValid: Bool){
-        if isValid == true{
-            textField.shake()
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UIColor.red.cgColor
-        } else{
-            textField.layer.borderColor = UIColor.clear.cgColor
+    func textFieldErrorAnimation(textFields: [TextFieldWithBool]){
+        for txts in textFields{
+            if txts.isValid == true{
+                txts.textField?.shake()
+                txts.textField?.layer.borderWidth = 1
+                txts.textField?.layer.borderColor = UIColor.red.cgColor
+            } else{
+                txts.textField?.layer.borderColor = UIColor.clear.cgColor
+            }
         }
     }
     
-    func resetTextFields(textFields: [UITextField]){
-        for textField in textFields{
-            textField.layer.borderWidth = 1
-            textField.layer.borderColor = UIColor.clear.cgColor
-            textField.text = ""
+    func resetTextFields(textFields: [TextFieldWithBool]){
+        for txts in textFields{
+            txts.textField?.layer.borderWidth = 1
+            txts.textField?.layer.borderColor = UIColor.clear.cgColor
+            txts.textField?.text = ""
         }
     }
     
@@ -119,13 +126,14 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
     }
     
     func checkYeastValidity() -> Bool{
-        if newYeastName.text == "" || Int16(newYeastFermLow.text!) == nil || Int16(newYeastFermHigh.text!) == nil || Int16(newYeastAttenLow.text!) == nil || Int16(newYeastAttenHigh.text!) == nil{
+        if newYeastName.text! == "" || Int16(newYeastFermLow.text!) == nil || Int16(newYeastFermHigh.text!) == nil || Int16(newYeastAttenLow.text!) == nil || Int16(newYeastAttenHigh.text!) == nil || Int16(newYeastAttenHigh.text!)! <= Int16(newYeastAttenLow.text!)! || Int16(newYeastFermLow.text!)! >= Int16(newYeastFermHigh.text!)!{
             return false
         }
         return true
     }
-    
+
     func addGrainToCoreData(){
+        
         let moc = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         if let grain = NSEntityDescription.insertNewObject(forEntityName: "Grains", into: moc!) as? Grains{
             grain.name = newGrainName.text!
@@ -136,12 +144,6 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
             }else{ grain.isExtract = true}
         }
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        newGrainPPG.isEnabled = false
-        newGrainSRM.isEnabled = false
-        newGrainName.isEnabled = false
-        newGrainPPG.isEnabled = true
-        newGrainSRM.isEnabled = true
-        newGrainName.isEnabled = true
         displayGrainAddedMessage()
     }
     
@@ -155,10 +157,6 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
             }else{hop.pellet = false}
         }
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        newHopAA.isEnabled = false
-        newHopName.isEnabled = false
-        newHopAA.isEnabled = true
-        newHopName.isEnabled = true
         displayHopAddedMessage()
     }
     
@@ -172,22 +170,7 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
             yeast.attenHigh = Int16(Double(newYeastAttenHigh.text!)!)
         }
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        newYeastName.isEnabled = false
-        newYeastFermLow.isEnabled = false
-        newYeastFermHigh.isEnabled = false
-        newYeastAttenLow.isEnabled = false
-        newYeastFermHigh.isEnabled = false
-        newYeastName.isEnabled = true
-        newYeastFermLow.isEnabled = true
-        newYeastFermHigh.isEnabled = true
-        newYeastAttenLow.isEnabled = true
-        newYeastFermHigh.isEnabled = true
         displayYeastAddedMessage()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
     
     func keyboardWillShow(_ notification:NSNotification){
@@ -207,23 +190,12 @@ class AddNewIngredientViewController: UIViewController, UITextFieldDelegate{
         self.newIngredientScrollView.contentInset = contentInset
         self.viewDidLayoutSubviews()
     }
-    /*
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        if (textField == newYeastName || textField == newYeastFermLow || textField == newYeastFermHigh || textField == newYeastAttenLow || textField == newYeastFermHigh){
-                        self.viewDidLayoutSubviews()
-        }
-    }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        if (textField == newYeastName || textField == newYeastFermLow || textField == newYeastFermHigh || textField == newYeastAttenLow || textField == newYeastFermHigh){
-            newIngredientScrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-            self.viewDidLayoutSubviews()
-            textField.resignFirstResponder()
-        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    */
+
     func displayErrorMessage(){
         let alertController = UIAlertController(title: "Could Not Add Ingredient", message: "", preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
@@ -257,6 +229,16 @@ extension UIView {
         layer.add(animation, forKey: "shake")
     }
 }
-
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
 
 

@@ -1,8 +1,8 @@
 //
 //  Grains+CoreDataProperties.swift
-//  Beer-App-Swift
+//  BeerChef
 //
-//  Created by Bailey Peterson on 3/8/17.
+//  Created by Bailey Peterson on 4/3/17.
 //  Copyright © 2017 Bailey Peterson. All rights reserved.
 //
 
@@ -13,13 +13,13 @@ import CoreData
 extension Grains {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Grains> {
-        return NSFetchRequest<Grains>(entityName: "Grains");
+        return NSFetchRequest<Grains>(entityName: "Grains")
     }
 
+    @NSManaged public var isExtract: Bool
     @NSManaged public var name: String?
     @NSManaged public var ppg: Double
     @NSManaged public var srm: Double
-    @NSManaged public var isExtract: Bool
     
     convenience init(name: String, ppg: Double, srm: Double, isExtract: Bool, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
         let entity = NSEntityDescription.entity(forEntityName: "Grains", in: context)!
