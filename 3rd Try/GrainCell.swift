@@ -28,4 +28,16 @@ class GrainCell: UITableViewCell{
         self.weightLabel.text = NSString(format: "%.2f", weight) as String
 
     }
+    
+    public func configureCell(grain: TempGrain){
+        let cd = ColorDecider()
+        let image: UIImage = cd.colorDecider(grain: grain.grain)
+        self.grainIcon.contentMode = UIViewContentMode.scaleToFill
+        self.grainIcon.image = image
+        self.nameLabel.text = grain.grain.name
+        self.ppgLabel.text = NSString(format: "%.1f", grain.grain.ppg) as String
+        self.srmLabel.text = NSString(format: "%.1f", grain.grain.srm) as String
+        self.weightLabel.text = NSString(format: "%.2f", grain.weight) as String
+        
+    }
 }

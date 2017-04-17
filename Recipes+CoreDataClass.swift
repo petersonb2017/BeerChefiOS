@@ -47,11 +47,16 @@ public class Recipes: NSManagedObject {
         var recipeIBU = 0.0
         let hops = self.containsHop?.allObjects as! [HopWithWeight]
         if(hops.isEmpty == true) {return 0.0}
-        for i in 0 ... (hops.count - 1){
-            let hopTimesWeight = hops[i].aa*Double(hops[i].weight)
-            let firstPowThing = pow(0.000125, (self.calcOG()-1)*(5.5/6.5))
-            let eToTheX = (1-pow(M_E,(-0.04*Double(hops[i].time))))
-            recipeIBU += ((hopTimesWeight*74.89*firstPowThing*eToTheX/4.15)/self.batchSize)
+        for hop in hops{
+            var aa = hop.aa
+            let weight = hop.weight
+            let time = hop.time
+            let bc = self.batchSize
+            if hop.pellet{aa = aa*1.10}
+            let hopTimesWeight = aa*weight
+            let firstPowThing = pow(0.000125, (self.calcOG()-1)*(bc)/(bc+1))
+            let eToTheX = (1-pow(M_E,(-0.04*Double(time))))
+            recipeIBU += ((hopTimesWeight*74.89*firstPowThing*eToTheX/4.15)/bc)
         }
         
         return recipeIBU
@@ -59,7 +64,6 @@ public class Recipes: NSManagedObject {
     
     func calcABV() -> Double{
         let abv = (self.calcOG() - self.calcFG())*131.25
-        //double ABV = (OG - FG)*131.25
         return abv
     }
     

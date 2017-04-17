@@ -20,6 +20,8 @@
 		134973CB1E2E04A900B14E3C /* Grains+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C31E2E04A900B14E3C /* Grains+CoreDataProperties.swift */; };
 		134973CC1E2E04A900B14E3C /* Hops+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C41E2E04A900B14E3C /* Hops+CoreDataClass.swift */; };
 		134973CD1E2E04A900B14E3C /* Hops+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134973C51E2E04A900B14E3C /* Hops+CoreDataProperties.swift */; };
+		1355204A1E976AC600704591 /* TempHop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135520491E976AC600704591 /* TempHop.swift */; };
+		1355204C1E976AE700704591 /* TempGrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1355204B1E976AE700704591 /* TempGrain.swift */; };
 		135E69B41E5CD7D200F21014 /* BeerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135E69B31E5CD7D200F21014 /* BeerTabBarController.swift */; };
 		135E69B61E5CD84300F21014 /* IngredientInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135E69B51E5CD84300F21014 /* IngredientInitializer.swift */; };
 		137D980A1E91A6EC00318E1C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 137D98091E91A6EC00318E1C /* Launch Screen.storyboard */; };
@@ -39,6 +41,7 @@
 		13C540621E19FC1500374021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13C540611E19FC1500374021 /* Assets.xcassets */; };
 		13E0B3631E35430000E95AE3 /* AddNewIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0B3621E35430000E95AE3 /* AddNewIngredientViewController.swift */; };
 		13E0B3651E3543AC00E95AE3 /* ArchivedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0B3641E3543AC00E95AE3 /* ArchivedRecipesViewController.swift */; };
+		13F9D16B1E940A5B00FFEE59 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F9D16A1E940A5B00FFEE59 /* RecipeDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -77,6 +80,8 @@
 		134973C31E2E04A900B14E3C /* Grains+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grains+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		134973C41E2E04A900B14E3C /* Hops+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hops+CoreDataClass.swift"; sourceTree = "<group>"; };
 		134973C51E2E04A900B14E3C /* Hops+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Hops+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		135520491E976AC600704591 /* TempHop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempHop.swift; sourceTree = "<group>"; };
+		1355204B1E976AE700704591 /* TempGrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempGrain.swift; sourceTree = "<group>"; };
 		135E69B31E5CD7D200F21014 /* BeerTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTabBarController.swift; sourceTree = "<group>"; };
 		135E69B51E5CD84300F21014 /* IngredientInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientInitializer.swift; sourceTree = "<group>"; };
 		13600AE41E92C2D700A0D7A7 /* BeerChef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeerChef.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +104,7 @@
 		13C540661E19FC1500374021 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13E0B3621E35430000E95AE3 /* AddNewIngredientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewIngredientViewController.swift; sourceTree = "<group>"; };
 		13E0B3641E3543AC00E95AE3 /* ArchivedRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchivedRecipesViewController.swift; sourceTree = "<group>"; };
+		13F9D16A1E940A5B00FFEE59 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +134,8 @@
 				134973711E2DFC8D00B14E3C /* BeerChef.xcdatamodeld */,
 				139879B61E49905E00004ACE /* ColorDecider.swift */,
 				13C5405A1E19FC1500374021 /* AppDelegate.swift */,
+				135520491E976AC600704591 /* TempHop.swift */,
+				1355204B1E976AE700704591 /* TempGrain.swift */,
 				135E69B51E5CD84300F21014 /* IngredientInitializer.swift */,
 				13B55F571E69FE2400648C65 /* IngredientGrainCell.swift */,
 				13B55F591E69FFC300648C65 /* IngredientHopCell.swift */,
@@ -182,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				13E0B3641E3543AC00E95AE3 /* ArchivedRecipesViewController.swift */,
+				13F9D16A1E940A5B00FFEE59 /* RecipeDetailViewController.swift */,
 				13E0B3621E35430000E95AE3 /* AddNewIngredientViewController.swift */,
 				13C5405C1E19FC1500374021 /* RecipeBuilderViewController.swift */,
 				138771E01E7CB8E80068F3E1 /* IngredientListViewController.swift */,
@@ -310,10 +319,12 @@
 				13E0B3651E3543AC00E95AE3 /* ArchivedRecipesViewController.swift in Sources */,
 				138771E11E7CB8E80068F3E1 /* IngredientListViewController.swift in Sources */,
 				135E69B41E5CD7D200F21014 /* BeerTabBarController.swift in Sources */,
+				13F9D16B1E940A5B00FFEE59 /* RecipeDetailViewController.swift in Sources */,
 				13254FA71E3D08BD00E39EDC /* HopWithWeight+CoreDataClass.swift in Sources */,
 				13254FA81E3D08BD00E39EDC /* HopWithWeight+CoreDataProperties.swift in Sources */,
 				13C5405D1E19FC1500374021 /* RecipeBuilderViewController.swift in Sources */,
 				134973C71E2E04A900B14E3C /* Yeasts+CoreDataProperties.swift in Sources */,
+				1355204C1E976AE700704591 /* TempGrain.swift in Sources */,
 				13E0B3631E35430000E95AE3 /* AddNewIngredientViewController.swift in Sources */,
 				13C5405B1E19FC1500374021 /* AppDelegate.swift in Sources */,
 				13B55F621E6A000F00648C65 /* IngredientYeastCell.swift in Sources */,
@@ -331,6 +342,7 @@
 				13254FAA1E3D08BD00E39EDC /* GrainWithWeight+CoreDataProperties.swift in Sources */,
 				134973CC1E2E04A900B14E3C /* Hops+CoreDataClass.swift in Sources */,
 				13B55F5C1E69FFEE00648C65 /* GrainCell.swift in Sources */,
+				1355204A1E976AC600704591 /* TempHop.swift in Sources */,
 				13B55F641E6A00F300648C65 /* RecipeCell.swift in Sources */,
 				13B55F601E6A000600648C65 /* YeastCell.swift in Sources */,
 				13B55F5E1E69FFFE00648C65 /* HopCell.swift in Sources */,
@@ -492,7 +504,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8KW672Q96R;
 				INFOPLIST_FILE = "3rd Try/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = BeerChef;
 				PRODUCT_NAME = BeerChef;
@@ -509,7 +521,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 8KW672Q96R;
 				INFOPLIST_FILE = "3rd Try/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = BeerChef;
 				PRODUCT_NAME = BeerChef;

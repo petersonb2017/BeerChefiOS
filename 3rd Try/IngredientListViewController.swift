@@ -67,9 +67,31 @@ class IngredientListViewController: UIViewController, UITableViewDelegate, UITab
             return sections[2]
         }
     }*/
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
+    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
+        let label = UILabel(frame: CGRect(x: 10, y: 5, width: tableView.frame.size.width, height: 18))
+        label.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
+        label.textColor = UIColor(red: 84.0/255.0, green: 61.0/255.0, blue: 32.0/255.0, alpha: 1.0)
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .left
+        view.addSubview(label)
         
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 0))
+        switch section{
+        case 0:
+            label.text = "Fermentables"
+            view.backgroundColor = UIColor(red: 225.0/255.0, green: 180.0/255.0, blue: 102.0/255.0, alpha: 1.0)
+        case 1:
+            label.text = "Hops"
+            view.backgroundColor = UIColor(red: 125.0/255.0, green: 227.0/255.0, blue: 186.0/255.0, alpha: 1.0)
+        case 2:
+            label.text = "Yeast"
+            view.backgroundColor = UIColor(red: 255.0/255.0, green: 184.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+        default:
+            label.text = ""
+        }
         return view
     }
     

@@ -27,4 +27,13 @@ class HopCell: UITableViewCell{
         self.hopIcon.image = ColorDecider().colorDecider(hop: hop)
     }
     
+    public func configureCell(hop: TempHop){
+        self.nameLabel.text = hop.hop.name
+        self.aaLabel.text = NSString(format: "%.1f", hop.hop.aa) as String
+        self.timeLabel.text = NSString(format: "%d", hop.time) as String
+        self.weightLabel.text = NSString(format: "%.2f", hop.weight) as String
+        self.hopIcon.contentMode = UIViewContentMode.scaleToFill
+        self.hopIcon.image = ColorDecider().colorDecider(hop: hop.hop)
+    }
+    
 }
